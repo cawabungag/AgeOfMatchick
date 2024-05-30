@@ -22,7 +22,7 @@ namespace AgeOfMatchic.Config
 		public string CharacterId;
 		public CharacterVisualData VisualData;
 		public AbilityConfig Ability;
-		public AbilityConfig BoosterAbility;
+		public BoosterAbilityConfig BoosterAbility;
 	}
 	
 	[Serializable]
@@ -34,8 +34,16 @@ namespace AgeOfMatchic.Config
 	}
 
 	[Serializable]
+	public class BoosterAbilityConfig
+	{
+		public AbilityVisualData VisualData;
+		public AbilityEffectConfig[] Effects;
+	}
+
+	[Serializable]
 	public class AbilityConfig
 	{
+		public AbilityVisualData VisualData;
 		public AbilityEffectConfig[] ThreeMatchEffectsIds;
 		public AbilityEffectConfig[] FourMatchEffectsIds;
 		public AbilityEffectConfig[] FiveMatchEffectsIds;
