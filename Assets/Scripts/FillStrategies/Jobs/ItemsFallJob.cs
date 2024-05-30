@@ -47,7 +47,7 @@ namespace FillStrategies.Jobs
         private Tween CreateItemFadeInTween(IUnityItem item)
         {
             item.SpriteRenderer.SetAlpha(0);
-            item.SetScale(1);
+            item.SetScale(0.4f);
             item.Show();
 
             return item.SpriteRenderer.DOFade(1, FadeDuration);
