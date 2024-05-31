@@ -14,7 +14,11 @@ namespace Common
             GridPosition = gridPosition;
         }
 
-        public int ItemId => Item.ContentId;
+        public int ItemId
+        {
+            get => Item.ContentId;
+            set => ItemId = value;
+        }
 
         public bool HasItem => Item != null;
         public bool IsMovable => State.IsLocked == false && HasItem;

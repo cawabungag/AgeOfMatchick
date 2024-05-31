@@ -1,3 +1,4 @@
+using System.Linq;
 using Common.Extensions;
 using Common.Interfaces;
 using Match3.Infrastructure;
@@ -24,6 +25,11 @@ namespace Common
         public void SetSprites(Sprite[] sprites)
         {
             _sprites = sprites;
+        }
+
+        public string[] GetContentIds()
+        {
+            return _sprites.Select(x => x.name).ToArray();
         }
 
         protected override IUnityItem CreateItem()

@@ -53,7 +53,10 @@ namespace Common.GameModes
 
         private void Init(int level)
         {
-            var gameBoardData = _appContext.Resolve<IGameBoardDataProvider<IUnityGridSlot>>().GetGameBoardSlots(level);
+            var gameBoardRenderer = _appContext.Resolve<IUnityGameBoardRenderer>();
+            gameBoardRenderer.CreateGridTiles(null);
+            var gameBoardDataProvider = _appContext.Resolve<IGameBoardDataProvider<IUnityGridSlot>>();
+            var gameBoardData = gameBoardDataProvider.GetGameBoardSlots(level);
             var rowCount = gameBoardData.GetLength(0);
             var columnCount = gameBoardData.GetLength(1);
             var itemsPoolCapacity = rowCount * columnCount + Mathf.Max(rowCount, columnCount) * 2;
@@ -65,7 +68,8 @@ namespace Common.GameModes
         private void SetLevel(int level)
         {
             _unityGame.InitGameLevel(level);
-            _itemGenerator.SetSprites(_iconSets[_gameUiCanvas.SelectedIconsSetIndex].Sprites);
+            //HARD get last sprites 
+            _itemGenerator.SetSprites(_iconSets[^1].Sprites);
         }
     }
 }

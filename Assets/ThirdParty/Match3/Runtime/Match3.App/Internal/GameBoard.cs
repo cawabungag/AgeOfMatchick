@@ -19,12 +19,28 @@ namespace Match3.App.Internal
 
         public TGridSlot this[GridPosition gridPosition] => _gridSlots[gridPosition.RowIndex, gridPosition.ColumnIndex];
         public TGridSlot this[int rowIndex, int columnIndex] => _gridSlots[rowIndex, columnIndex];
+        public string[,] Items
+        {
+            get
+            {
+                var newItems = new string[_rowCount, _columnCount];
+                for (int row = 0; row < _rowCount; row++)
+                {
+                    for (int col = 0; col < _columnCount; col++)
+                    {
+                        newItems[row, col] = _gridSlots[row, col].Item.SpriteRenderer.sprite.name;
+                    }
+                }
+
+                return newItems;
+            }
+        }
 
         public void SetGridSlots(TGridSlot[,] gridSlots)
         {
             if (_gridSlots != null)
             {
-                throw new InvalidOperationException("Grid slots have already been created.");
+                // throw new InvalidOperationException("Grid slots have already been created.");
             }
 
             _rowCount = gridSlots.GetLength(0);
@@ -54,13 +70,24 @@ namespace Match3.App.Internal
 
         public void Dispose()
         {
+            Array.Clear(_gridSlots, 0, _gridSlots.Length);
+            ResetState();
+        }
+        
+        public void Clear()
+        {
             if (_gridSlots == null)
             {
                 return;
             }
 
-            Array.Clear(_gridSlots, 0, _gridSlots.Length);
-            ResetState();
+            for (int x = 0; x < _gridSlots.GetLength(0); x++)
+            {
+                for (int y = 0; y < _gridSlots.GetLength(1); y++)
+                {
+                    _gridSlots[x, y].Clear();
+                }
+            }
         }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]

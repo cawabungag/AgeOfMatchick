@@ -2743,6 +2743,7 @@ MonoBehaviour:
     _spriteAtlas: {fileID: 4343727234628468602, guid: 5a3d96f784e062140bc56feb589a5915, type: 2}
   - _name: Aom
     _spriteAtlas: {fileID: 100100200, guid: 997ee0a05523e4d7d847d9c104fa5f38, type: 3}
+  _configObject: {fileID: 0}
 --- !u!4 &1397966487
 Transform:
   m_ObjectHideFlags: 0

@@ -6,5 +6,6 @@ namespace Common.Interfaces
     public interface IUnityItemGenerator : IItemGenerator
     {
         void SetSprites(Sprite[] sprites);
+        string[] GetContentIds();
     }
 }

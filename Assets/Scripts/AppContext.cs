@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using AgeOfMatchic.Battle;
+using AgeOfMatchic.Config;
 using Common;
 using Common.Interfaces;
 using Common.Models;
@@ -24,6 +26,9 @@ public class AppContext : MonoBehaviour, IAppContext
     [Space]
     [SerializeField] private IconsSetModel[] _iconSets;
 
+    [Space]
+    [SerializeField] private ConfigObject _configObject;
+
     public void Construct()
     {
         _registeredTypes = new Dictionary<Type, object>();
@@ -36,6 +41,7 @@ public class AppContext : MonoBehaviour, IAppContext
         RegisterInstance<UnityGame>(GetUnityGame());
         RegisterInstance<IUnityItemGenerator, IItemsPool<IUnityItem>>(GetItemGenerator());
         RegisterInstance<IBoardFillStrategy<IUnityGridSlot>[]>(GetBoardFillStrategies());
+        RegisterInstance<IBattleSession>(new BattleSession(_configObject));
     }
 
     private Dictionary<Type, object> _registeredTypes;

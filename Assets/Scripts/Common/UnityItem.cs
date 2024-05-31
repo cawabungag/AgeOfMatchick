@@ -1,4 +1,6 @@
 using Common.Interfaces;
+using DG.Tweening;
+using TMPro;
 using UnityEngine;
 
 namespace Common
@@ -6,12 +8,14 @@ namespace Common
     public class UnityItem : MonoBehaviour, IUnityItem
     {
         [SerializeField] private SpriteRenderer _spriteRenderer;
+        [SerializeField] private TextMeshPro _debugCoord;
 
         private bool _isDestroyed;
 
         public int ContentId { get; private set; }
         public Transform Transform => transform;
         public SpriteRenderer SpriteRenderer => _spriteRenderer;
+        public TextMeshPro DebugCoord => _debugCoord;
 
         public void Show()
         {
@@ -58,6 +62,16 @@ namespace Common
             var scaleY = 180 / (spriteHeight * _spriteRenderer.sprite.pixelsPerUnit);
 
             transform.localScale = new Vector3(0.4f, 0.4f, 1);
+        }
+
+        private Color originalColor;
+        public void DebugColor()
+        {
+            originalColor = SpriteRenderer.color;
+            SpriteRenderer.DOColor(Color.red, 1f).OnComplete(() =>
+            {
+                SpriteRenderer.DOColor(originalColor, 1f);
+            });
         }
 
         private void OnDestroy()

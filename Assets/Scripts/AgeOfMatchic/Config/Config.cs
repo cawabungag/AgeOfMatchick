@@ -8,6 +8,7 @@ namespace AgeOfMatchic.Config
 	{
 		[SerializeField]
 		private Config _config;
+		public Config Config => _config;
 	}
 	
 	[Serializable]
@@ -23,6 +24,14 @@ namespace AgeOfMatchic.Config
 		public CharacterVisualData VisualData;
 		public AbilityConfig Ability;
 		public BoosterAbilityConfig BoosterAbility;
+		public CharacterStatsConfig ChatacterStatsConfig;
+	}
+
+	[Serializable]
+	public class CharacterStatsConfig
+	{
+		public int Health;
+		public int Shield;
 	}
 	
 	[Serializable]

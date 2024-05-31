@@ -1,10 +1,12 @@
-﻿using Match3.Core.Structs;
+﻿using Common.Interfaces;
+using Match3.Core.Structs;
 
 namespace Match3.Core.Interfaces
 {
     public interface IGridSlot
     {
-        int ItemId { get; }
+        int ItemId { get; set; }
+         IUnityItem Item { get; }
 
         bool HasItem { get; }
         bool IsMovable { get; }
@@ -12,5 +14,6 @@ namespace Match3.Core.Interfaces
 
         IGridSlotState State { get; }
         GridPosition GridPosition { get; }
+        void Clear();
     }
 }

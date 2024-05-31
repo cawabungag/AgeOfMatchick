@@ -58,6 +58,8 @@ namespace Common.GameModes
 
         private IBoardFillStrategy<IUnityGridSlot> GetSelectedFillStrategy()
         {
+            //HARD get last fill strategies
+            return _boardFillStrategies[^2];
             return GetFillStrategy(_gameUiCanvas.SelectedFillStrategyIndex);
         }
 

@@ -27,6 +27,28 @@ namespace FillStrategies
         {
             var itemsToShow = new List<IUnityItem>();
 
+            Generate(gameBoard, itemsToShow);
+            int iterations = 1;
+            while (MatchHelper<IUnityGridSlot>.IsPotentialMatch(gameBoard).Item1 
+                   && MatchHelper<IUnityGridSlot>.HasPotentialMatch(gameBoard).Item1)
+            {
+                gameBoard.Clear();
+                foreach (var item in itemsToShow)
+                {
+                    ReturnItemToPool(item);
+                }
+                itemsToShow.Clear();
+                Generate(gameBoard, itemsToShow);
+                iterations++;
+            }
+            
+            Debug.LogError($"+++ iterations: {iterations}");
+            
+            return new[] { new ItemsShowJob(itemsToShow) };
+        }
+
+        private void Generate(IGameBoard<IUnityGridSlot> gameBoard, List<IUnityItem> itemsToShow)
+        {
             for (var rowIndex = 0; rowIndex < gameBoard.RowCount; rowIndex++)
             {
                 for (var columnIndex = 0; columnIndex < gameBoard.ColumnCount; columnIndex++)
@@ -39,13 +61,12 @@ namespace FillStrategies
 
                     var item = GetItemFromPool();
                     item.SetWorldPosition(GetWorldPosition(gridSlot.GridPosition));
+                    item.DebugCoord.text = $"{rowIndex}:{columnIndex}";
 
                     gridSlot.SetItem(item);
                     itemsToShow.Add(item);
                 }
             }
-
-            return new[] { new ItemsShowJob(itemsToShow) };
         }
 
         public abstract IEnumerable<IJob> GetSolveJobs(IGameBoard<IUnityGridSlot> gameBoard,

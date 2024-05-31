@@ -1,5 +1,6 @@
 using System;
 using Match3.Core.Interfaces;
+using TMPro;
 using UnityEngine;
 
 namespace Common.Interfaces
@@ -10,6 +11,7 @@ namespace Common.Interfaces
 
         Transform Transform { get; }
         SpriteRenderer SpriteRenderer { get; }
+        TextMeshPro DebugCoord { get; }
 
         void Show();
         void Hide();
@@ -18,5 +20,6 @@ namespace Common.Interfaces
         void SetWorldPosition(Vector3 worldPosition);
         Vector3 GetWorldPosition();
         void SetScale(float value);
+        void DebugColor();
     }
 }

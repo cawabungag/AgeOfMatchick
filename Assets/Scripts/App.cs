@@ -27,7 +27,8 @@ public class App : MonoBehaviour
 
     private void Start()
     {
-        ActivateGameMode(0);
+        //HARD Set next game mode
+        ActivateGameMode(1);
     }
 
     private void OnEnable()
