@@ -30,7 +30,7 @@ namespace FillStrategies
             Generate(gameBoard, itemsToShow);
             int iterations = 1;
             while (MatchHelper<IUnityGridSlot>.IsPotentialMatch(gameBoard).Item1 
-                   && MatchHelper<IUnityGridSlot>.HasPotentialMatch(gameBoard).Item1)
+                   && MatchHelper<IUnityGridSlot>.HasPotentialMatchSrt(gameBoard))
             {
                 gameBoard.Clear();
                 foreach (var item in itemsToShow)

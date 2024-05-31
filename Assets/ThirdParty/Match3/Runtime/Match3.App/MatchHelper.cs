@@ -86,111 +86,6 @@ namespace Match3.App
 			return sb.ToString();
 		}
 
-		public static (bool, Vector2Int[] vector2Ints) HasPotentialMatch(
-			IGameBoard<TGridSlot> gameBoardOrig)
-		{
-			var gameBoard = gameBoardOrig.Items;
-			int rowCount = gameBoardOrig.RowCount;
-			int colCount = gameBoardOrig.ColumnCount;
-
-			// Check for horizontal swaps
-			for (int row = 0; row < rowCount; row++)
-			{
-				for (int col = 0; col < colCount - 1; col++)
-				{
-					Swap(gameBoard, row, col, row, col + 1);
-					var (b, vector2Ints) = HasMatch(gameBoard);
-					if (b)
-					{
-						foreach (var vector2 in vector2Ints)
-						{
-							Debug.LogError($"{ConvertArrayToString(gameBoardOrig.Items)}");
-							gameBoardOrig[vector2.y, vector2.x].Item.DebugColor();
-						}
-
-						return (true, vector2Ints);
-					}
-
-					Swap(gameBoard, row, col, row, col + 1); // Swap back
-				}
-			}
-
-			// Check for vertical swaps
-			for (int row = 0; row < rowCount - 1; row++)
-			{
-				for (int col = 0; col < colCount; col++)
-				{
-					Swap(gameBoard, row, col, row + 1, col);
-					var (b, vector2Ints) = HasMatch(gameBoard);
-					if (b)
-					{
-						foreach (var vector2 in vector2Ints)
-						{
-							Debug.LogError($"{ConvertArrayToString(gameBoardOrig.Items)}");
-							gameBoardOrig[vector2.y, vector2.x].Item.DebugColor();
-						}
-
-						return (true, vector2Ints);
-					}
-
-					Swap(gameBoard, row, col, row + 1, col); // Swap back
-				}
-			}
-
-			return (false, new Vector2Int[] { });
-		}
-
-		private static void Swap(string[,] board, int row1, int col1, int row2, int col2)
-		{
-			(board[row1, col1], board[row2, col2]) = (board[row2, col2], board[row1, col1]);
-		}
-
-		private static (bool, Vector2Int[]) HasMatch(string[,] board)
-		{
-			int rowCount = board.GetLength(0);
-			int colCount = board.GetLength(1);
-
-			// Check for horizontal matches
-			for (int row = 0; row < rowCount; row++)
-			{
-				for (int col = 0; col < colCount - 2; col++)
-				{
-					var current = board[row, col];
-					if (current == board[row, col + 1] && string.Equals(current,
-							board[row, col + 2], StringComparison.Ordinal))
-					{
-						return (true,
-							new[]
-							{
-								new Vector2Int(col, row), new Vector2Int(col + 1, row),
-								new Vector2Int(col + 2, row)
-							});
-					}
-				}
-			}
-
-			// Check for vertical matches
-			for (int col = 0; col < colCount; col++)
-			{
-				for (int row = 0; row < rowCount - 2; row++)
-				{
-					var current = board[row, col];
-					if (current == board[row + 1, col] && string.Equals(current,
-							board[row + 2, col], StringComparison.Ordinal))
-					{
-						return (true,
-							new[]
-							{
-								new Vector2Int(col, row), new Vector2Int(col, row + 1),
-								new Vector2Int(col, row + 2)
-							});
-					}
-				}
-			}
-
-			return (false, new Vector2Int[] { });
-		}
-
 		public static bool HasPotentialMatchSrt(IGameBoard<TGridSlot> gameBoardOrig)
 		{
 			var board = gameBoardOrig.Items;
@@ -208,8 +103,6 @@ namespace Match3.App
 					if (hasMatchStr)
 					{
 						gameBoardOrig[row, col].Item.DebugColor();
-						gameBoardOrig[row, col + 1].Item.DebugColor();
-						gameBoardOrig[row, col + 2].Item.DebugColor();
 						return true;
 					}
 
@@ -227,8 +120,6 @@ namespace Match3.App
 					if (hasMatchStr)
 					{
 						gameBoardOrig[row, col].Item.DebugColor();
-						gameBoardOrig[row + 1, col].Item.DebugColor();
-						gameBoardOrig[row + 2, col].Item.DebugColor();
 						return true;
 					}
 
