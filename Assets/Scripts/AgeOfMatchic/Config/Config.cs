@@ -25,6 +25,7 @@ namespace AgeOfMatchic.Config
 		public AbilityConfig Ability;
 		public BoosterAbilityConfig BoosterAbility;
 		public CharacterStatsConfig ChatacterStatsConfig;
+		public bool IsEnemy;
 	}
 
 	[Serializable]
