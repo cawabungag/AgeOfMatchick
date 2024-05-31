@@ -82,6 +82,10 @@ MonoBehaviour:
           Duration: 0
           Value: 1
           Chance: 100
+      ChatacterStatsConfig:
+        Health: 0
+        Shield: 0
+      IsEnemy: 0
     - CharacterId: Harun
       VisualData:
         Name: "\u0425\u0430\u0440\u0443\u043D"
@@ -132,6 +136,10 @@ MonoBehaviour:
           Duration: 3
           Value: 2
           Chance: 100
+      ChatacterStatsConfig:
+        Health: 0
+        Shield: 0
+      IsEnemy: 0
     - CharacterId: Zodd
       VisualData:
         Name: "\u0417\u043E\u0434\u0434"
@@ -210,6 +218,10 @@ MonoBehaviour:
           Duration: 3
           Value: 2
           Chance: 100
+      ChatacterStatsConfig:
+        Health: 0
+        Shield: 0
+      IsEnemy: 0
     - CharacterId: Golem
       VisualData:
         Name: "\u0413\u043E\u043B\u0435\u043C"
@@ -282,6 +294,10 @@ MonoBehaviour:
           Duration: 2
           Value: 5
           Chance: 100
+      ChatacterStatsConfig:
+        Health: 0
+        Shield: 0
+      IsEnemy: 0
     - CharacterId: Panurg
       VisualData:
         Name: "\u041F\u0430\u043D\u0443\u0440\u0433"
@@ -345,3 +361,7 @@ MonoBehaviour:
           Duration: 0
           Value: 100
           Chance: 100
+      ChatacterStatsConfig:
+        Health: 0
+        Shield: 0
+      IsEnemy: 0
