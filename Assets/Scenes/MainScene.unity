@@ -2467,6 +2467,7 @@ GameObject:
   m_Component:
   - component: {fileID: 756832033}
   - component: {fileID: 756832034}
+  - component: {fileID: 756832035}
   m_Layer: 5
   m_Name: BattleUi
   m_TagString: Untagged
@@ -2534,6 +2535,18 @@ MonoBehaviour:
   EnemyShieldImage: {fileID: 201976287}
   EnemyAvatarImage: {fileID: 185887193}
   _config: {fileID: 11400000, guid: 6a780571676d544a8898d8b9baf73626, type: 2}
+--- !u!114 &756832035
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 756832032}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5ad76b8054324e9cba408b8a2acc459b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &769626475
 GameObject:
   m_ObjectHideFlags: 0

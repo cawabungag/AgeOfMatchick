@@ -37,9 +37,9 @@ public class BattleManager : MonoBehaviour
     {
         {true, new List<AbilityEffect>()},
         {false, new List<AbilityEffect>()},
-    }; 
+    };
 
-    public void ApplyAbilityEffect(AbilityEffectConfig origEffect, bool applyToEnemy)
+    private void ApplyAbilityEffect(AbilityEffectConfig origEffect, bool applyToEnemy)
     {
         if (origEffect.Chance < 100 && !CheckChance(origEffect.Chance))
         {
