@@ -75,6 +75,16 @@ namespace AgeOfMatchic.Config
 		public int Value;
 		[Range(0, 100)]
 		public float Chance;
+
+		public BattleManager.AbilityEffect Clone()
+		{
+			return new BattleManager.AbilityEffect()
+			{
+				Type = Type,
+				Duration = Duration,
+				Value = Value,
+			};
+		}
 	}
 
 	[Serializable]
@@ -82,7 +92,6 @@ namespace AgeOfMatchic.Config
 	{
 		//Abilities
 		DamageHealth,
-		DamageShield,
 		HealHealth,
 		HealShield,
 		Reflect,

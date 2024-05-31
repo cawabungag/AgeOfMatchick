@@ -51,6 +51,7 @@
     <Compile Include="Assets/ThirdParty/Match3/Runtime/Match3.App/Interfaces/IJob.cs" />
     <Compile Include="Assets/VFX/Other/ULTIMA_FX_PACK1/DemoScene/Scripts/DemoManager.cs" />
     <Compile Include="Assets/Scripts/Common/GameModes/DrawGameBoardMode.cs" />
+    <Compile Include="Assets/Scripts/Common/BattleUi.cs" />
     <Compile Include="Assets/Scripts/Common/GameModes/GameResetMode.cs" />
     <Compile Include="Assets/VFX/Other/HSFiles/Scripts/HS_EffectSound.cs" />
     <Compile Include="Assets/ThirdParty/Match3/Runtime/Match3.Core/Interfaces/IStatefulSlot.cs" />
@@ -114,6 +115,7 @@
     <Compile Include="Assets/Scripts/Common/GridTiles/StatefulGridTile.cs" />
     <Compile Include="Assets/ThirdParty/Demigiant/DOTween/Modules/DOTweenModuleUnityVersion.cs" />
     <Compile Include="Assets/Scripts/Common/LevelGoals/CollectRowMaxItems.cs" />
+    <Compile Include="Assets/Scripts/Common/BattleManager.cs" />
     <Compile Include="Assets/Scripts/FillStrategies/Jobs/MoveJob.cs" />
     <Compile Include="Assets/Scripts/Common/Extensions/SpriteAtlasExtensions.cs" />
     <Compile Include="Assets/Scripts/Common/Extensions/SpriteRendererExtensions.cs" />
@@ -150,8 +152,8 @@
     <Compile Include="Assets/Scripts/Common/UnityGridSlot.cs" />
     <Compile Include="Assets/Scripts/FillStrategies/Jobs/ItemsShowJob.cs" />
     <Compile Include="Assets/VFX/Other/HSFiles/Scripts/HS_Rotator.cs" />
-    <Compile Include="Assets/ThirdParty/Match3/Runtime/Match3.Infrastructure/SequenceDetectors/VerticalLineDetector.cs" />
     <Compile Include="Assets/VFX/Other/HSFiles/Scripts/For demo scenes/HS_DemoShooting.cs" />
+    <Compile Include="Assets/ThirdParty/Match3/Runtime/Match3.Infrastructure/SequenceDetectors/VerticalLineDetector.cs" />
     <Compile Include="Assets/ThirdParty/Match3/Runtime/Match3.Infrastructure/ItemGenerator.cs" />
     <Compile Include="Assets/Scripts/FillStrategies/SimpleFillStrategy.cs" />
     <Compile Include="Assets/Scripts/FillStrategies/Models/ItemMoveData.cs" />
@@ -162,6 +164,7 @@
     <Compile Include="Assets/Scripts/Common/UnityItem.cs" />
     <Compile Include="Assets/Scripts/Common/Interfaces/IItemGenerator.cs" />
     <Compile Include="Assets/Scripts/FillStrategies/FallDownFillStrategy.cs" />
+    <Compile Include="Assets/Scripts/Common/CurrencyUi.cs" />
     <Compile Include="Assets/Scripts/Common/Interfaces/IUnityGridSlot.cs" />
     <Compile Include="Assets/Scripts/Common/LevelGoalsProvider.cs" />
     <Compile Include="Assets/Scripts/App.cs" />

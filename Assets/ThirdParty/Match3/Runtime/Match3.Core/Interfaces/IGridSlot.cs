@@ -6,7 +6,7 @@ namespace Match3.Core.Interfaces
     public interface IGridSlot
     {
         int ItemId { get; set; }
-         IUnityItem Item { get; }
+		IUnityItem Item { get; }
 
         bool HasItem { get; }
         bool IsMovable { get; }

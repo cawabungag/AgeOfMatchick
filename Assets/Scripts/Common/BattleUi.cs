@@ -1,3 +1,6 @@
+using System.Collections.Generic;
+using System.Linq;
+using AgeOfMatchic.Config;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -17,16 +20,43 @@ namespace Common
 		public Image EnemyShieldImage;
 		public Image EnemyAvatarImage;
 
-		[Header("Max Values")]
-		public int MaxAllyHealth = 100;
-		public int MaxAllyShield = 100;
-		public int MaxEnemyHealth = 100;
-		public int MaxEnemyShield = 100;
+		private int MaxAllyHealth = 100;
+		private int MaxAllyShield = 100;
+		private int MaxEnemyHealth = 100;
+		private int MaxEnemyShield = 100;
 
 		private int allyHealth;
 		private int allyShield;
 		private int enemyHealth;
 		private int enemyShield;
+	
+		[SerializeField]
+		private ConfigObject _config;
+		public ConfigObject Config => _config;
+
+		public static BattleUi Instance;
+		public static string[] AllyHeroes = {"Gaheris", "Harun", "Panurg"};
+		public static string EnemyHeroes = "Enemy_Hound";
+
+		public string[] AllyAbilities
+		{
+			get
+			{
+				var buffer = new List<string>();
+				foreach (var allyHero in AllyHeroes)
+				{
+					var characterConfig = _config.Config.Characters.ToList().Find(x => x.CharacterId == allyHero);
+					buffer.Add(characterConfig.Ability.VisualData.Icon.name);
+				}
+
+				return buffer.ToArray();
+			}
+		}
+		
+		private void Awake()
+		{
+			Instance = this;
+		}
 
 		public int AllyHealth
 		{
@@ -100,34 +130,49 @@ namespace Common
 			}
 		}
 
-		public void Setup(int initialAllyHealth,
-			int initialAllyShield,
-			int initialEnemyHealth,
-			int initialEnemyShield,
-			string[] allyHeroIDs,
-			string enemyHeroID,
-			string[] allyAbilityIcons,
-			string[] allyBoosterIcons)
+		private void Start()
 		{
-			AllyHealth = initialAllyHealth;
-			AllyShield = initialAllyShield;
-			EnemyHealth = initialEnemyHealth;
-			EnemyShield = initialEnemyShield;
-
-			UpdateAllyAvatars(allyHeroIDs);
-			UpdateEnemyAvatar(enemyHeroID);
-			UpdateAllyAbilityIcons(allyAbilityIcons);
-			UpdateAllyBoosterIcons(allyBoosterIcons);
+			Setup(AllyHeroes, EnemyHeroes);
 		}
 
-		private void UpdateAllyAvatars(string[] allyHeroIDs)
+		public void Setup(string[] allyHeroes, string enemy)
+		{
+			var allySprites = new List<Sprite>();
+			var abilities = new List<Sprite>();
+			var boosters = new List<Sprite>();
+
+			foreach (var allyHero in allyHeroes)
+			{
+				var heroConf = _config.Config.Characters.ToList()
+					.Find(x => x.CharacterId == allyHero);
+				MaxAllyHealth += heroConf.ChatacterStatsConfig.Health;
+				MaxAllyShield += heroConf.ChatacterStatsConfig.Shield;
+				allySprites.Add(heroConf.VisualData.Sprite);
+				abilities.Add(heroConf.Ability.VisualData.Icon);
+				boosters.Add(heroConf.BoosterAbility.VisualData.Icon);
+			}
+
+			var enemyConf = _config.Config.Characters.ToList().Find(x => x.CharacterId == enemy);
+
+			AllyHealth = MaxAllyHealth;
+			AllyShield = MaxAllyShield;
+			MaxEnemyHealth = EnemyHealth = enemyConf.ChatacterStatsConfig.Health;
+			MaxEnemyShield = EnemyShield = enemyConf.ChatacterStatsConfig.Shield;
+
+			UpdateAllyAvatars(allySprites);
+			UpdateEnemyAvatar(enemyConf.VisualData.Sprite);
+			UpdateAllyAbilityIcons(abilities);
+			UpdateAllyBoosterIcons(boosters);
+		}
+
+		private void UpdateAllyAvatars(List<Sprite> allyHeroIDs)
 		{
 			for (int i = 0; i < AllyAvatarImages.Length; i++)
 			{
-				if (i < allyHeroIDs.Length)
+				if (i < allyHeroIDs.Count)
 				{
 					// Assuming you have a method to load the sprite based on the hero ID
-					AllyAvatarImages[i].sprite = LoadHeroSprite(allyHeroIDs[i]);
+					AllyAvatarImages[i].sprite = allyHeroIDs[i];
 					AllyAvatarImages[i].enabled = true;
 				}
 				else
@@ -137,21 +182,20 @@ namespace Common
 			}
 		}
 
-		private void UpdateEnemyAvatar(string enemyHeroID)
+		private void UpdateEnemyAvatar(Sprite enemyHeroID)
 		{
-			// Assuming you have a method to load the sprite based on the hero ID
-			EnemyAvatarImage.sprite = LoadHeroSprite(enemyHeroID);
+			EnemyAvatarImage.sprite = enemyHeroID;
 			EnemyAvatarImage.enabled = true;
 		}
 
-		private void UpdateAllyAbilityIcons(string[] allyAbilityIcons)
+		private void UpdateAllyAbilityIcons(List<Sprite> allyAbilityIcons)
 		{
 			for (int i = 0; i < AllyAbilityIcons.Length; i++)
 			{
-				if (i < allyAbilityIcons.Length)
+				if (i < allyAbilityIcons.Count)
 				{
 					// Assuming you have a method to load the sprite based on the ability ID
-					AllyAbilityIcons[i].sprite = LoadAbilitySprite(allyAbilityIcons[i]);
+					AllyAbilityIcons[i].sprite = allyAbilityIcons[i];
 					AllyAbilityIcons[i].enabled = true;
 				}
 				else
@@ -161,14 +205,14 @@ namespace Common
 			}
 		}
 
-		private void UpdateAllyBoosterIcons(string[] allyBoosterIcons)
+		private void UpdateAllyBoosterIcons(List<Sprite> allyBoosterIcons)
 		{
 			for (int i = 0; i < AllyBoosterIcons.Length; i++)
 			{
-				if (i < allyBoosterIcons.Length)
+				if (i < allyBoosterIcons.Count)
 				{
 					// Assuming you have a method to load the sprite based on the booster ID
-					AllyBoosterIcons[i].sprite = LoadBoosterSprite(allyBoosterIcons[i]);
+					AllyBoosterIcons[i].sprite = allyBoosterIcons[i];
 					AllyBoosterIcons[i].enabled = true;
 				}
 				else
@@ -177,35 +221,57 @@ namespace Common
 				}
 			}
 		}
-
-		private Sprite LoadHeroSprite(string heroID)
+		
+		public void ApplyDamageToAlly(int damage)
 		{
-			// Implement your method to load a sprite based on the hero ID
-			// For example, you can load from Resources folder:
-			return Resources.Load<Sprite>($"Heroes/{heroID}");
+			if (allyShield > 0)
+			{
+				int remainingShield = allyShield - damage;
+				if (remainingShield < 0)
+				{
+					AllyShield = 0;
+					AllyHealth += remainingShield; // remainingShield is negative here
+				}
+				else
+				{
+					AllyShield = remainingShield;
+				}
+			}
+			else
+			{
+				AllyHealth -= damage;
+			}
 		}
 
-		private Sprite LoadAbilitySprite(string abilityID)
+		public void ApplyDamageToEnemy(int damage)
 		{
-			// Implement your method to load a sprite based on the ability ID
-			// For example, you can load from Resources folder:
-			return Resources.Load<Sprite>($"Abilities/{abilityID}");
+			if (enemyShield > 0)
+			{
+				int remainingShield = enemyShield - damage;
+				if (remainingShield < 0)
+				{
+					EnemyShield = 0;
+					EnemyHealth += remainingShield; // remainingShield is negative here
+				}
+				else
+				{
+					EnemyShield = remainingShield;
+				}
+			}
+			else
+			{
+				EnemyHealth -= damage;
+			}
 		}
-
-		private Sprite LoadBoosterSprite(string boosterID)
+		
+		public void HealHealth(int heal)
 		{
-			// Implement your method to load a sprite based on the booster ID
-			// For example, you can load from Resources folder:
-			return Resources.Load<Sprite>($"Boosters/{boosterID}");
+				AllyHealth += heal;
 		}
-
-		// You can use these methods to set initial values or update the UI
-		private void Start()
+		
+		public void HealShield(int heal)
 		{
-			// Optionally set initial values in Start or use the Setup method elsewhere
-			Setup(MaxAllyHealth, MaxAllyShield, MaxEnemyHealth, MaxEnemyShield,
-				new string[] {"Ally1", "Ally2"}, "Enemy1",
-				new string[] {"Ability1", "Ability2"}, new string[] {"Booster1", "Booster2"});
+			AllyShield += heal;
 		}
 	}
 }

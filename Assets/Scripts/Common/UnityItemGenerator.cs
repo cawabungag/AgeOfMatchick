@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System.Linq;
 using Common.Extensions;
 using Common.Interfaces;
@@ -42,8 +43,11 @@ namespace Common
 
         protected override IUnityItem ConfigureItem(IUnityItem item)
         {
-            var index = _random.Next(0, _sprites.Length);
-            item.SetSprite(index, _sprites[index]);
+            var strings = new List<string>{"Gold", "Silver"};
+            strings.AddRange(BattleUi.Instance.AllyAbilities);
+            var index = _random.Next(0, strings.Count);
+            var sprite = _sprites.ToList().Find(x => x.name == $"{strings[index]}(Clone)");
+            item.SetSprite(index, sprite);
 
             return item;
         }
