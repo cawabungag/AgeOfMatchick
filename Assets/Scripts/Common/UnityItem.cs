@@ -68,7 +68,7 @@ namespace Common
         public void DebugColor()
         {
             originalColor = SpriteRenderer.color;
-            SpriteRenderer.DOColor(Color.red, 1f).OnComplete(() =>
+            SpriteRenderer.DOColor(Color.clear, 1f).OnComplete(() =>
             {
                 SpriteRenderer.DOColor(originalColor, 1f);
             });
