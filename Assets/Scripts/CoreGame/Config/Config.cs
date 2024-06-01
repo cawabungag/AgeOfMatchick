@@ -10,5 +10,6 @@ namespace AgeOfMatchic.Config
 		public AomConfig Config => _config;
 
 		public EventProbabilities EventProbabilities;
+		public LevelsData LevelsData;
 	}
 }
