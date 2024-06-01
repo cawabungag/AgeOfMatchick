@@ -197,16 +197,22 @@ namespace Common
 
 			var enemyConf = _config.Config.Characters.ToList().Find(x => x.CharacterId == enemy);
 			AllyHealth = MaxAllyHealth;
-			AllyShield = MaxAllyShield;
+			AllyShield = 0;
 			MaxEnemyHealth = enemyConf.ChatacterStatsConfig.Health;
 			MaxEnemyShield = enemyConf.ChatacterStatsConfig.Shield;
 			EnemyHealth = MaxEnemyHealth;
-			MaxEnemyShield = EnemyShield;
+			MaxEnemyShield = 0;
 
 			UpdateAllyAvatars(allySprites);
 			UpdateEnemyAvatar(enemyConf.VisualData.Sprite);
 			UpdateAllyAbilityIcons(abilities);
 			UpdateAllyBoosterIcons(boosters);
+			
+			UpdateEnemyHealthUI();
+			UpdateEnemyShieldUI();
+			
+			UpdateAllyHealthUI();
+			UpdateAllyShieldUI();
 		}
 
 		private void UpdateAllyAvatars(List<Sprite> allyHeroIDs)
@@ -342,7 +348,7 @@ namespace Common
 				textComponent.text = $"+{value}";
 				if (healShield)
 				{
-					textComponent.color = Color.blue;
+					textComponent.color = Color.green;
 				}
 				else
 				{
@@ -354,7 +360,7 @@ namespace Common
 				textComponent.text = $"-{value}";
 				if (healShield)
 				{
-					textComponent.color = Color.blue;
+					textComponent.color = Color.green;
 				}
 				else
 				{
