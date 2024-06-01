@@ -54,15 +54,14 @@ namespace Common
                 return;
             }
 
+            BattleManager.Instance.AllyTurn(ability, sequence.SolvedGridSlots.Count, vector3s);
+            await UniTask.WaitForSeconds(0.5f);
+            
             if (!solvedDataIsAutomaticMatch)
             {
                 BattleManager.Instance.EnemyTurn();
+                await UniTask.WaitForSeconds(0.5f);
             }
-            await UniTask.WaitForSeconds(0.5f);
-
-            
-            BattleManager.Instance.AllyTurn(ability, sequence.SolvedGridSlots.Count, vector3s);
-            await UniTask.WaitForSeconds(0.5f);
             
             Debug.Log(GetSequenceDescription(sequence));
         }
