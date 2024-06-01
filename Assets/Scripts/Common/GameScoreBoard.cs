@@ -36,6 +36,7 @@ namespace Common
                 {
                     return;
                 }
+                
                 BattleManager.Instance.EnemyTurn();
                 return;
             }
@@ -46,12 +47,13 @@ namespace Common
                 
                 await UniTask.WaitForSeconds(0.5f);
                 
-                BattleManager.Instance.EnemyTurn();
-                
                 if (solvedDataIsAutomaticMatch)
                 {
                     return;
                 }
+                
+                BattleManager.Instance.EnemyTurn();
+
                 return;
             }
 

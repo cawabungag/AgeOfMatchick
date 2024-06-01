@@ -79,8 +79,9 @@ namespace Common
             
             while (MatchHelper<IUnityGridSlot>.IsPotentialMatch(GameBoard).Item1)
             {
-                var pos1 = MatchHelper<IUnityGridSlot>.IsPotentialMatch(GameBoard).Item2[0];
-                var pos2 = MatchHelper<IUnityGridSlot>.IsPotentialMatch(GameBoard).Item2[1];
+                var isPotentialMatch = MatchHelper<IUnityGridSlot>.IsPotentialMatch(GameBoard);
+                var pos1 = isPotentialMatch.Item2[0];
+                var pos2 = isPotentialMatch.Item2[1];
                 await SwapItemsAsync(new GridPosition(pos1.x, pos1.y), 
                     new GridPosition(pos2.x, pos2.y), true);
             }
