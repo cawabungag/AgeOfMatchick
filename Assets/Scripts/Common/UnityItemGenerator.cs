@@ -44,10 +44,31 @@ namespace Common
         protected override IUnityItem ConfigureItem(IUnityItem item)
         {
             var strings = new List<string>{"Gold", "Silver"};
+            item.SpriteRenderer.color = Color.white;
             strings.AddRange(BattleUi.Instance.AllyAbilities);
-            var index = _random.Next(0, strings.Count);
-            var sprite = _sprites.ToList().Find(x => x.name == $"{strings[index]}(Clone)");
-            item.SetSprite(index, sprite);
+            var battleUi = BattleUi.Instance;
+            var eventProbabilities = battleUi.Config.EventProbabilities;
+            var index = _random.Next(0, 100);
+            if (index < eventProbabilities.AbilitiesProbability)
+            {
+                var next = _random.Next(0, battleUi.AllyAbilities.Length);
+                var battleUiAllyAbility = battleUi.AllyAbilities[next];
+                item.SetSprite(strings.FindIndex(x => x.Equals(battleUiAllyAbility)), _sprites.ToList().Find(x => x.name == $"{battleUiAllyAbility}(Clone)"));
+                Debug.LogError($"+++++ {battleUiAllyAbility}");
+                Debug.LogError($"+++++ {item.SpriteRenderer.sprite.name}");
+                return item;
+            }
+            if (index > eventProbabilities.AbilitiesProbability && index < 100 - eventProbabilities.GoldProbability)
+            {
+                item.SetSprite(strings.FindIndex(x => x.Equals("Silver")), _sprites.ToList().Find(x => x.name == "Silver(Clone)"));
+                return item;
+            }
+
+            if (index > eventProbabilities.AbilitiesProbability + eventProbabilities.Silver)
+            {
+                item.SetSprite(strings.FindIndex(x => x.Equals("Gold")), _sprites.ToList().Find(x => x.name == "Gold(Clone)"));
+                return item;
+            }
 
             return item;
         }

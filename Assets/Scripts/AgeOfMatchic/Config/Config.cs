@@ -8,5 +8,7 @@ namespace AgeOfMatchic.Config
 		[SerializeField]
 		private AomConfig _config;
 		public AomConfig Config => _config;
+
+		public EventProbabilities EventProbabilities;
 	}
 }

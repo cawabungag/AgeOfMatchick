@@ -19,11 +19,13 @@ namespace Common
 
         public void Show()
         {
+            _spriteRenderer.color = Color.white;
             gameObject.SetActive(true);
         }
 
         public void Hide()
         {
+            _spriteRenderer.color = Color.white;
             gameObject.SetActive(false);
         }
 

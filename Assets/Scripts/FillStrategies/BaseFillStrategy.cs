@@ -39,6 +39,7 @@ namespace FillStrategies
                 }
                 itemsToShow.Clear();
                 Generate(gameBoard, itemsToShow);
+                Debug.Log($"+++ iterations: {iterations}");
                 iterations++;
             }
             
