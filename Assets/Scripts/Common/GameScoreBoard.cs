@@ -58,21 +58,19 @@ namespace Common
                 return;
             }
 
-            BattleManager.Instance.AllyTurn(ability, sequence.SolvedGridSlots.Count);
-            await UniTask.WaitForSeconds(0.5f);
-
             if (!solvedDataIsAutomaticMatch)
             {
                 BattleManager.Instance.EnemyTurn();
                 BattleManager.Instance.ApplyBuffsAndDebuffs(false);
                 BattleManager.Instance.ApplyBuffsAndDebuffs(true);
             }
-           
             await UniTask.WaitForSeconds(0.5f);
 
             
-            Debug.Log(GetSequenceDescription(sequence));
+            BattleManager.Instance.AllyTurn(ability, sequence.SolvedGridSlots.Count);
             await UniTask.WaitForSeconds(0.5f);
+            
+            Debug.Log(GetSequenceDescription(sequence));
         }
 
         private string GetSequenceDescription(ItemSequence<IUnityGridSlot> sequence)
