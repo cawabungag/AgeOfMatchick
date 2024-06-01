@@ -38,7 +38,7 @@ namespace Common
 			{
 				if (_config == null)
 				{
-					_config = Resources.Load<ConfigObject>("Config 1");
+					_config = Resources.Load<ConfigObject>("Config");
 				}
 				return _config;
 			}

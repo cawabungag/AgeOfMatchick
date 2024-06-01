@@ -1,4 +1,3 @@
-using System;
 using UnityEngine;
 
 namespace AgeOfMatchic.Config
@@ -7,102 +6,7 @@ namespace AgeOfMatchic.Config
 	public class ConfigObject : ScriptableObject
 	{
 		[SerializeField]
-		private Config _config;
-		public Config Config => _config;
-	}
-	
-	[Serializable]
-	public class Config
-	{
-		[SerializeField]
-		public CharacterConfig[] Characters;
-	}
-	
-	[Serializable]
-	public class CharacterConfig
-	{
-		public string CharacterId;
-		public CharacterVisualData VisualData;
-		public AbilityConfig Ability;
-		public BoosterAbilityConfig BoosterAbility;
-		public CharacterStatsConfig ChatacterStatsConfig;
-		public bool IsEnemy;
-	}
-
-	[Serializable]
-	public class CharacterStatsConfig
-	{
-		public int Health;
-		public int Shield;
-	}
-	
-	[Serializable]
-	public class CharacterVisualData
-	{
-		public string Name;
-		public string Description;
-		public Sprite Sprite;
-	}
-
-	[Serializable]
-	public class BoosterAbilityConfig
-	{
-		public AbilityVisualData VisualData;
-		public AbilityEffectConfig[] Effects;
-	}
-
-	[Serializable]
-	public class AbilityConfig
-	{
-		public AbilityVisualData VisualData;
-		public AbilityEffectConfig[] ThreeMatchEffectsIds;
-		public AbilityEffectConfig[] FourMatchEffectsIds;
-		public AbilityEffectConfig[] FiveMatchEffectsIds;
-	}
-
-	[Serializable]
-	public class AbilityVisualData
-	{
-		public string Name;
-		public string Description;
-		public Sprite Icon;
-	}
-
-	[Serializable]
-	public class AbilityEffectConfig
-	{
-		public AbilityEffectType Type;
-		public int Duration;
-		public int Value;
-		[Range(0, 100)]
-		public float Chance;
-
-		public BattleManager.AbilityEffect Clone()
-		{
-			return new BattleManager.AbilityEffect()
-			{
-				Type = Type,
-				Duration = Duration,
-				Value = Value,
-			};
-		}
-	}
-
-	[Serializable]
-	public enum AbilityEffectType
-	{
-		//Abilities
-		DamageHealth,
-		HealHealth,
-		HealShield,
-		Reflect,
-		Stun,
-		Shuffle,
-		ShuffleWithDamage,
-		
-		//Busters
-		DeleteRow,
-		DoubleEffect,
-		SilverShuffle
+		private AomConfig _config;
+		public AomConfig Config => _config;
 	}
 }
