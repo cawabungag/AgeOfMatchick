@@ -13,9 +13,11 @@ namespace Common
     {
         public void OnSequencesSolved(SolvedData<IUnityGridSlot> solvedData)
         {
+            var auto = solvedData.IsAutomaticMatch;
             foreach (var sequence in solvedData.SolvedSequences)
             {
-                RegisterSequenceScore(sequence, solvedData.IsAutomaticMatch);
+                RegisterSequenceScore(sequence, auto);
+                auto = false;
                 Debug.LogError("Solve Data:" + GetSequenceDescription(sequence) + $"IsAutomaticMatch {solvedData.IsAutomaticMatch}");
             }
         }
