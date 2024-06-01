@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using AgeOfMatchic.Config;
+using DG.Tweening;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -35,6 +36,9 @@ namespace Common
 		public TextMeshProUGUI _allyShield;
 		public TextMeshProUGUI _enemyHealth;
 		public TextMeshProUGUI _enemyShield;
+		
+		public TextMeshProUGUI _currentEffectAlly;
+		public TextMeshProUGUI _currentEffectEnemy;
 	
 		[SerializeField]
 		private ConfigObject _config;
@@ -281,6 +285,8 @@ namespace Common
 			{
 				AllyHealth -= damage;
 			}
+			
+			SetEffect(false, false, false, damage);
 		}
 
 		public void ApplyDamageToEnemy(int damage)
@@ -302,16 +308,20 @@ namespace Common
 			{
 				EnemyHealth -= damage;
 			}
+			
+			SetEffect(true, false, false, damage);
 		}
 		
 		public void HealHealth(int heal)
 		{
 			AllyHealth += heal;
+			SetEffect(false, true, false, heal);
 		}
 		
 		public void HealShield(int heal)
 		{
 			AllyShield += heal;
+			SetEffect(false, true, true, heal);
 		}
 
 		private void LateUpdate()
@@ -320,6 +330,46 @@ namespace Common
 			_allyShield.text = $"{AllyShield}/{MaxAllyShield}";
 			_enemyHealth.text = $"{EnemyHealth}/{MaxEnemyHealth}";
 			_enemyShield.text = $"{EnemyShield}/{MaxEnemyShield}";
+		}
+
+		public float fadeDuration = 1.0f;
+		public float displayDuration = 1.0f;
+		private void SetEffect(bool isEnemy, bool isHeal, bool healShield, int value)
+		{
+			var textComponent = isEnemy ? _currentEffectEnemy : _currentEffectAlly;
+			if (isHeal)
+			{
+				textComponent.text = $"+{value}";
+				if (healShield)
+				{
+					textComponent.color = Color.blue;
+				}
+				else
+				{
+					textComponent.color = Color.green;
+				}
+			}
+			else
+			{
+				textComponent.text = $"-{value}";
+				if (healShield)
+				{
+					textComponent.color = Color.blue;
+				}
+				else
+				{
+					textComponent.color = Color.red;
+				}
+			}
+			
+			var color = textComponent.color;
+			color.a = 0;
+			textComponent.color = color;
+
+			textComponent.DOFade(1, fadeDuration).OnComplete(() =>
+			{
+				textComponent.DOFade(0, displayDuration);
+			});
 		}
 	}
 }

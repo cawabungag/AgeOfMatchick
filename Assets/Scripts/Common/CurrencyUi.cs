@@ -32,6 +32,8 @@ namespace Common
 
 		[SerializeField]
 		private Camera _uiCamera;
+		public Material alwaysOnTopMaterial;
+
 		
 		
 		public static CurrencyUi Instance;
