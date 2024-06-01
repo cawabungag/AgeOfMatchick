@@ -63,8 +63,6 @@ namespace Common
                 BattleManager.Instance.EnemyTurn();
                 await UniTask.WaitForSeconds(0.5f);
             }
-            
-            Debug.Log(GetSequenceDescription(sequence));
         }
 
         private string GetSequenceDescription(ItemSequence<IUnityGridSlot> sequence)
