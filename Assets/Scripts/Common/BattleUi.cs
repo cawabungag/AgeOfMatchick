@@ -192,11 +192,12 @@ namespace Common
 			}
 
 			var enemyConf = _config.Config.Characters.ToList().Find(x => x.CharacterId == enemy);
-
 			AllyHealth = MaxAllyHealth;
 			AllyShield = MaxAllyShield;
-			MaxEnemyHealth = EnemyHealth = enemyConf.ChatacterStatsConfig.Health;
-			MaxEnemyShield = EnemyShield = enemyConf.ChatacterStatsConfig.Shield;
+			MaxEnemyHealth = enemyConf.ChatacterStatsConfig.Health;
+			MaxEnemyShield = enemyConf.ChatacterStatsConfig.Shield;
+			EnemyHealth = MaxEnemyHealth;
+			MaxEnemyShield = EnemyShield;
 
 			UpdateAllyAvatars(allySprites);
 			UpdateEnemyAvatar(enemyConf.VisualData.Sprite);

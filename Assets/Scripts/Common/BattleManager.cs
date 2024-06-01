@@ -160,7 +160,7 @@ public class BattleManager : MonoBehaviour
         if (effects == null) return;
         foreach (var effect in effects)
         {
-            ApplyAbilityEffect(effect, false);
+            ApplyAbilityEffect(effect, true);
         }
     }
 }
