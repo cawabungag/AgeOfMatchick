@@ -54,7 +54,7 @@ namespace Common
             }
         }
 
-        private void OnPointerDrag(object sender, PointerEventArgs pointer)
+        private async void OnPointerDrag(object sender, PointerEventArgs pointer)
         {
             if (_isDragMode == false)
             {
@@ -74,7 +74,16 @@ namespace Common
             }
 
             _isDragMode = false;
-            SwapItemsAsync(_slotDownPosition, slotPosition).Forget();
+            
+            await SwapItemsAsync(_slotDownPosition, slotPosition);
+            
+            while (MatchHelper<IUnityGridSlot>.IsPotentialMatch(GameBoard).Item1)
+            {
+                var pos1 = MatchHelper<IUnityGridSlot>.IsPotentialMatch(GameBoard).Item2[0];
+                var pos2 = MatchHelper<IUnityGridSlot>.IsPotentialMatch(GameBoard).Item2[1];
+                await SwapItemsAsync(new GridPosition(pos1.x, pos1.y), 
+                    new GridPosition(pos2.x, pos2.y));
+            }
         }
 
         private bool IsPointerOnBoard(Vector3 pointerWorldPosition, out GridPosition slotDownPosition)

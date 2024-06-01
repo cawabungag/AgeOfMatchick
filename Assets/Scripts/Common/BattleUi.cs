@@ -32,7 +32,17 @@ namespace Common
 	
 		[SerializeField]
 		private ConfigObject _config;
-		public ConfigObject Config => _config;
+		public ConfigObject Config
+		{
+			get
+			{
+				if (_config == null)
+				{
+					_config = Resources.Load<ConfigObject>("Config 1");
+				}
+				return _config;
+			}
+		}
 
 		public static BattleUi Instance;
 		public static string[] AllyHeroes = {"Gaheris", "Harun", "Panurg"};
@@ -45,6 +55,7 @@ namespace Common
 				var buffer = new List<string>();
 				foreach (var allyHero in AllyHeroes)
 				{
+					Debug.LogError($"_config : {_config == null}");
 					var characterConfig = _config.Config.Characters.ToList().Find(x => x.CharacterId == allyHero);
 					buffer.Add(characterConfig.Ability.VisualData.Icon.name);
 				}

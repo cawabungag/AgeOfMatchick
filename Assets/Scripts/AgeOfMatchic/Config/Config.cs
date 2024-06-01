@@ -14,6 +14,7 @@ namespace AgeOfMatchic.Config
 	[Serializable]
 	public class Config
 	{
+		[SerializeField]
 		public CharacterConfig[] Characters;
 	}
 	

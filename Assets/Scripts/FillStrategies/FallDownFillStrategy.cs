@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using Common.Extensions;
 using Common.Interfaces;
 using FillStrategies.Jobs;
@@ -24,14 +25,16 @@ namespace FillStrategies
             var itemsToHide = new List<IUnityItem>();
             var solvedGridSlots = new HashSet<IUnityGridSlot>();
 
-            foreach (var solvedGridSlot in solvedData.GetSolvedGridSlots())
+            var unityGridSlots = solvedData.GetSolvedGridSlots();
+            
+            foreach (var solvedGridSlot in unityGridSlots)
             {
                 if (solvedGridSlot.IsMovable == false)
                 {
                     continue;
                 }
 
-                if (solvedGridSlots.Add(solvedGridSlot) == false)
+                if (!solvedGridSlots.Add(solvedGridSlot))
                 {
                     continue;
                 }
@@ -60,7 +63,6 @@ namespace FillStrategies
             solvedGridSlots.Clear();
             jobs.Add(new ItemsHideJob(itemsToHide));
             jobs.AddRange(GetFillJobs(gameBoard, 1));
-            // jobs.AddRange(GetSolveJobs(gameBoard));
 
             return jobs;
         }
@@ -128,6 +130,7 @@ namespace FillStrategies
 
             return jobs;
         }
+        
 
         private GridPosition GetItemGeneratorPosition(IGameBoard<IUnityGridSlot> gameBoard, int rowIndex, int columnIndex)
         {

@@ -12,14 +12,15 @@ namespace Match3.App
 		{
 			int rowCount = gameBoard.RowCount;
 			int colCount = gameBoard.ColumnCount;
+			var board = gameBoard.Items;
 
 			for (int row = 0; row < rowCount; row++)
 			{
 				for (int col = 0; col < colCount - 2; col++)
 				{
-					int current = gameBoard[row, col].ItemId;
-					var itemId = gameBoard[row, col + 1].ItemId;
-					var id = gameBoard[row, col + 2].ItemId;
+					var current = board[row, col];
+					var itemId = board[row, col + 1];
+					var id = board[row, col + 2];
 					if (current == itemId && current == id)
 					{
 						return (true,
@@ -36,9 +37,9 @@ namespace Match3.App
 			{
 				for (int row = 0; row < rowCount - 2; row++)
 				{
-					int current = gameBoard[row, col].ItemId;
-					if (current == gameBoard[row + 1, col].ItemId
-						&& current == gameBoard[row + 2, col].ItemId)
+					string current = board[row, col];
+					if (current == board[row + 1, col]
+						&& current == board[row + 2, col])
 					{
 						return (true,
 							new[]

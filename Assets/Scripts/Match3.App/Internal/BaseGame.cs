@@ -95,6 +95,12 @@ namespace Match3.App.Internal
             solvedData = _gameBoardSolver.Solve(GameBoard, position1, position2);
             return solvedData.SolvedSequences.Count > 0;
         }
+        
+        protected bool TryFindSolveSequence(GridPosition position1, GridPosition position2, out SolvedData<TGridSlot> solvedData)
+        {
+            solvedData = _gameBoardSolver.Solve(GameBoard, position1, position2);
+            return solvedData.SolvedSequences.Count > 0;
+        }
 
         protected void NotifySequencesSolved(SolvedData<TGridSlot> solvedData)
         {
