@@ -16,6 +16,7 @@ namespace Common
             foreach (var sequence in solvedData.SolvedSequences)
             {
                 RegisterSequenceScore(sequence, solvedData.IsAutomaticMatch);
+                Debug.LogError("Solve Data:" + GetSequenceDescription(sequence) + $"IsAutomaticMatch {solvedData.IsAutomaticMatch}");
             }
         }
 
