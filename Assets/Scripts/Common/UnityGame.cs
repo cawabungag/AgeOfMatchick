@@ -75,14 +75,14 @@ namespace Common
 
             _isDragMode = false;
             
-            await SwapItemsAsync(_slotDownPosition, slotPosition);
+            await SwapItemsAsync(_slotDownPosition, slotPosition, false);
             
             while (MatchHelper<IUnityGridSlot>.IsPotentialMatch(GameBoard).Item1)
             {
                 var pos1 = MatchHelper<IUnityGridSlot>.IsPotentialMatch(GameBoard).Item2[0];
                 var pos2 = MatchHelper<IUnityGridSlot>.IsPotentialMatch(GameBoard).Item2[1];
                 await SwapItemsAsync(new GridPosition(pos1.x, pos1.y), 
-                    new GridPosition(pos2.x, pos2.y));
+                    new GridPosition(pos2.x, pos2.y), true);
             }
         }
 

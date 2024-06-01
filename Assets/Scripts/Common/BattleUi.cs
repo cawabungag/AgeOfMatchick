@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using AgeOfMatchic.Config;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -29,9 +30,18 @@ namespace Common
 		private int allyShield;
 		private int enemyHealth;
 		private int enemyShield;
+
+		public TextMeshProUGUI _allyHealth;
+		public TextMeshProUGUI _allyShield;
+		public TextMeshProUGUI _enemyHealth;
+		public TextMeshProUGUI _enemyShield;
 	
 		[SerializeField]
 		private ConfigObject _config;
+
+		[SerializeField]
+		private ResultScreen _resultScreen;
+		
 		public ConfigObject Config
 		{
 			get
@@ -45,7 +55,7 @@ namespace Common
 		}
 
 		public static BattleUi Instance;
-		public static string[] AllyHeroes = {"Gaheris", "Harun", "Panurg"};
+		public static string[] AllyHeroes = {"Gaheris", "Harun", "Golem"};
 		public static string EnemyHeroes = "Enemy_Hound";
 
 		public string[] AllyAbilities
@@ -75,6 +85,15 @@ namespace Common
 			set
 			{
 				allyHealth = Mathf.Clamp(value, 0, MaxAllyHealth);
+				if (allyHealth == 0)
+				{
+					if (_resultScreen.gameObject.activeSelf)
+					{
+						return;
+					}
+					_resultScreen.gameObject.SetActive(true);
+					_resultScreen.SetResult(false);
+				}
 				UpdateAllyHealthUI();
 			}
 		}
@@ -95,6 +114,15 @@ namespace Common
 			set
 			{
 				enemyHealth = Mathf.Clamp(value, 0, MaxEnemyHealth);
+				if (enemyHealth == 0)
+				{
+					if (_resultScreen.gameObject.activeSelf)
+					{
+						return;
+					}
+					_resultScreen.gameObject.SetActive(true);
+					_resultScreen.SetResult(true);
+				}
 				UpdateEnemyHealthUI();
 			}
 		}
@@ -277,12 +305,20 @@ namespace Common
 		
 		public void HealHealth(int heal)
 		{
-				AllyHealth += heal;
+			AllyHealth += heal;
 		}
 		
 		public void HealShield(int heal)
 		{
 			AllyShield += heal;
+		}
+
+		private void LateUpdate()
+		{
+			_allyHealth.text = $"{AllyHealth}/{MaxAllyHealth}";
+			_allyShield.text = $"{AllyShield}/{MaxAllyShield}";
+			_enemyHealth.text = $"{EnemyHealth}/{MaxEnemyHealth}";
+			_enemyShield.text = $"{EnemyShield}/{MaxEnemyShield}";
 		}
 	}
 }

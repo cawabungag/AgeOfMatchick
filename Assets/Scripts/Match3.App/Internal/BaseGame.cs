@@ -90,18 +90,12 @@ namespace Match3.App.Internal
         protected abstract void OnGameStarted();
         protected abstract void OnGameStopped();
 
-        protected bool IsSolved(GridPosition position1, GridPosition position2, out SolvedData<TGridSlot> solvedData)
+        protected bool IsSolved(GridPosition position1, GridPosition position2, out SolvedData<TGridSlot> solvedData, bool isAuto)
         {
-            solvedData = _gameBoardSolver.Solve(GameBoard, position1, position2);
+            solvedData = _gameBoardSolver.Solve(GameBoard, isAuto, position1, position2);
             return solvedData.SolvedSequences.Count > 0;
         }
         
-        protected bool TryFindSolveSequence(GridPosition position1, GridPosition position2, out SolvedData<TGridSlot> solvedData)
-        {
-            solvedData = _gameBoardSolver.Solve(GameBoard, position1, position2);
-            return solvedData.SolvedSequences.Count > 0;
-        }
-
         protected void NotifySequencesSolved(SolvedData<TGridSlot> solvedData)
         {
             foreach (var sequencesConsumer in _solvedSequencesConsumers)

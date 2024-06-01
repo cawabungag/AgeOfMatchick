@@ -15,11 +15,12 @@ namespace Common
         {
             foreach (var sequence in solvedData.SolvedSequences)
             {
-                RegisterSequenceScore(sequence);
+                RegisterSequenceScore(sequence, solvedData.IsAutomaticMatch);
             }
         }
 
-        private async Task RegisterSequenceScore(ItemSequence<IUnityGridSlot> sequence)
+        private async Task RegisterSequenceScore(ItemSequence<IUnityGridSlot> sequence,
+            bool solvedDataIsAutomaticMatch)
         {
             var ability = sequence.SolvedGridSlots.First().Item.SpriteRenderer.sprite.name.Replace("(Clone)", string.Empty);
             if (ability == "Gold")
@@ -28,7 +29,11 @@ namespace Common
                 CurrencyUi.Instance.IncreaseGold(sequence.SolvedGridSlots.Count, vector3s);
                 
                 await UniTask.WaitForSeconds(0.5f);
-                
+
+                if (solvedDataIsAutomaticMatch)
+                {
+                    return;
+                }
                 BattleManager.Instance.EnemyTurn();
                 BattleManager.Instance.ApplyBuffsAndDebuffs(false);
                 BattleManager.Instance.ApplyBuffsAndDebuffs(true);
@@ -45,22 +50,29 @@ namespace Common
                 BattleManager.Instance.EnemyTurn();
                 BattleManager.Instance.ApplyBuffsAndDebuffs(false);
                 BattleManager.Instance.ApplyBuffsAndDebuffs(true);
+                
+                if (solvedDataIsAutomaticMatch)
+                {
+                    return;
+                }
                 return;
             }
 
             BattleManager.Instance.AllyTurn(ability, sequence.SolvedGridSlots.Count);
             await UniTask.WaitForSeconds(0.5f);
 
-            BattleManager.Instance.EnemyTurn();
-            BattleManager.Instance.ApplyBuffsAndDebuffs(false);
-            BattleManager.Instance.ApplyBuffsAndDebuffs(true);
+            if (!solvedDataIsAutomaticMatch)
+            {
+                BattleManager.Instance.EnemyTurn();
+                BattleManager.Instance.ApplyBuffsAndDebuffs(false);
+                BattleManager.Instance.ApplyBuffsAndDebuffs(true);
+            }
+           
             await UniTask.WaitForSeconds(0.5f);
 
             
             Debug.Log(GetSequenceDescription(sequence));
-            BattleUi.Instance.ApplyDamageToEnemy(10);
             await UniTask.WaitForSeconds(0.5f);
-            BattleUi.Instance.ApplyDamageToAlly(10);
         }
 
         private string GetSequenceDescription(ItemSequence<IUnityGridSlot> sequence)

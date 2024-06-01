@@ -78,7 +78,9 @@ public class AppContext : MonoBehaviour, IAppContext
 
     private UnityItemGenerator GetItemGenerator()
     {
-        return new UnityItemGenerator(_itemPrefab, new GameObject("ItemsPool").transform);
+        var o = new GameObject("ItemsPool");
+        // o.AddComponent<GridScaler>();
+        return new UnityItemGenerator(_itemPrefab, o.transform);
     }
 
     private IGameBoardSolver<IUnityGridSlot> GetGameBoardSolver()

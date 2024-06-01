@@ -5,6 +5,6 @@ namespace Match3.App.Interfaces
 {
     public interface IGameBoardSolver<TGridSlot> where TGridSlot : IGridSlot
     {
-        SolvedData<TGridSlot> Solve(IGameBoard<TGridSlot> gameBoard, params GridPosition[] gridPositions);
+        SolvedData<TGridSlot> Solve(IGameBoard<TGridSlot> gameBoard, bool isAutomatickMatch, params GridPosition[] gridPositions);
     }
 }

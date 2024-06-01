@@ -6,13 +6,15 @@ namespace Match3.App
     public class SolvedData<TGridSlot> where TGridSlot : IGridSlot
     {
         public SolvedData(IReadOnlyCollection<ItemSequence<TGridSlot>> solvedSequences,
-            IReadOnlyCollection<TGridSlot> specialItemGridSlots)
+            IReadOnlyCollection<TGridSlot> specialItemGridSlots, bool isAutomaticMatch)
         {
             SolvedSequences = solvedSequences;
             SpecialItemGridSlots = specialItemGridSlots;
+            IsAutomaticMatch = isAutomaticMatch;
         }
 
         public IReadOnlyCollection<TGridSlot> SpecialItemGridSlots { get; }
+        public bool IsAutomaticMatch { get; }
         public IReadOnlyCollection<ItemSequence<TGridSlot>> SolvedSequences { get; }
 
         public IEnumerable<TGridSlot> GetSolvedGridSlots(bool onlyMovable = false)

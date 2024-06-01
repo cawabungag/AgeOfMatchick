@@ -21,7 +21,7 @@ namespace Match3.Infrastructure
             _specialItemDetectors = specialItemDetectors;
         }
 
-        public SolvedData<TGridSlot> Solve(IGameBoard<TGridSlot> gameBoard, params GridPosition[] gridPositions)
+        public SolvedData<TGridSlot> Solve(IGameBoard<TGridSlot> gameBoard, bool isAutomatickMatch, params GridPosition[] gridPositions)
         {
             var resultSequences = new Collection<ItemSequence<TGridSlot>>();
             var specialItemGridSlots = new HashSet<TGridSlot>();
@@ -50,7 +50,7 @@ namespace Match3.Infrastructure
                 }
             }
 
-            return new SolvedData<TGridSlot>(resultSequences, specialItemGridSlots);
+            return new SolvedData<TGridSlot>(resultSequences, specialItemGridSlots, isAutomatickMatch);
         }
 
         private bool IsNewSequence(ItemSequence<TGridSlot> newSequence, IEnumerable<ItemSequence<TGridSlot>> sequences)

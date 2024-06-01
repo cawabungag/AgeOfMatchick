@@ -15,6 +15,7 @@ public class App : MonoBehaviour
 
     private void Awake()
     {
+        Application.targetFrameRate = 60;
         _appContext.Construct();
         _gameModes = new IGameMode[]
         {

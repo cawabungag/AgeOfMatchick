@@ -64,13 +64,13 @@ namespace Match3.App
 		}
 
 		protected UniTask SwapItemsAsync(GridPosition position1,
-			GridPosition position2,
+			GridPosition position2, bool isAuto,
 			CancellationToken cancellationToken = default)
 		{
 			if (_swapItemsTask?.Task.Status.IsCompleted() ?? true)
 			{
 				_swapItemsTask =
-					SwapItemsAsync(_fillStrategy, position1, position2, cancellationToken)
+					SwapItemsAsync(_fillStrategy, position1, position2, isAuto,  cancellationToken)
 						.ToAsyncLazy();
 			}
 
@@ -86,11 +86,12 @@ namespace Match3.App
 		protected virtual async UniTask SwapItemsAsync(IBoardFillStrategy<TGridSlot> fillStrategy,
 			GridPosition position1,
 			GridPosition position2,
+			bool isAuto,
 			CancellationToken cancellationToken = default)
 		{
 			await SwapGameBoardItemsAsync(position1, position2, cancellationToken);
 
-			if (IsSolved(position1, position2, out var solvedData))
+			if (IsSolved(position1, position2, out var solvedData, isAuto))
 			{
 				NotifySequencesSolved(solvedData);
 				await ExecuteJobsAsync(fillStrategy.GetSolveJobs(GameBoard, solvedData), cancellationToken);
