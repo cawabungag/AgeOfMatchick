@@ -24,7 +24,11 @@ public class Pathfinding
 				return ReconstructPath(cameFrom, current);
 			}
 
-			foreach (Node neighbor in current.Next)
+			var neighbors = new List<Node>();
+			neighbors.AddRange(current.Next);
+			neighbors.AddRange(current.Preview);
+			
+			foreach (Node neighbor in neighbors)
 			{
 				if (!cameFrom.ContainsKey(neighbor))
 				{
@@ -34,7 +38,7 @@ public class Pathfinding
 			}
 		}
 
-		return null; // No path found
+		return null;
 	}
 
 	private List<Node> ReconstructPath(Dictionary<Node, Node> cameFrom, Node current)
