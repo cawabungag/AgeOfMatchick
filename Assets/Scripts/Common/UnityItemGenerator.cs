@@ -64,12 +64,7 @@ namespace Common
                 return item;
             }
 
-            if (index > eventProbabilities.AbilitiesProbability + eventProbabilities.Silver)
-            {
-                item.SetSprite(strings.FindIndex(x => x.Equals("Gold")), _sprites.ToList().Find(x => x.name == "Gold(Clone)"));
-                return item;
-            }
-
+            item.SetSprite(strings.FindIndex(x => x.Equals("Gold")), _sprites.ToList().Find(x => x.name == "Gold(Clone)"));
             return item;
         }
     }
