@@ -76,7 +76,7 @@ namespace Common
             _isDragMode = false;
             
             await SwapItemsAsync(_slotDownPosition, slotPosition, false);
-            
+            await UniTask.WaitForSeconds(0.1f);
             while (MatchHelper<IUnityGridSlot>.IsPotentialMatch(GameBoard).Item1)
             {
                 var isPotentialMatch = MatchHelper<IUnityGridSlot>.IsPotentialMatch(GameBoard);

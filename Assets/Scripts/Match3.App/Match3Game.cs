@@ -95,10 +95,6 @@ namespace Match3.App
 			{
 				NotifySequencesSolved(solvedData);
 				await ExecuteJobsAsync(fillStrategy.GetSolveJobs(GameBoard, solvedData), cancellationToken);
-				var isPotentialMatch = MatchHelper<TGridSlot>.IsPotentialMatch(GameBoard);
-				Debug.LogError($"+++isPotentialMatch {isPotentialMatch.Item1} {string.Join(",", isPotentialMatch.Item2)}");
-				var hasPotentialMatch = MatchHelper<TGridSlot>.HasPotentialMatchSrt(GameBoard);
-				Debug.LogError($"+++hasPotentialMatch {hasPotentialMatch}");
 			}
 			else
 			{
