@@ -19,16 +19,25 @@ public class Pathfinding
 		{
 			Node current = queue.Dequeue();
 
-			// var isEmptyNode = string.IsNullOrEmpty(current.LevelId);
-			// var isCompleted = current.IsCompleted;
-			// if (!isCompleted && current != targetNode && !isEmptyNode)
-			// {
-			// 	return ReconstructPath(cameFrom, current);
-			// }
-			
 			if (current == targetNode)
 			{
-				return ReconstructPath(cameFrom, current);
+				var pathBuffer = new List<Node>();
+				var path =  ReconstructPath(cameFrom, current);
+				foreach (var node in path)
+				{
+					var isEmptyNode = string.IsNullOrEmpty(node.LevelId);
+					var isCompleted = node.IsCompleted || isEmptyNode;
+					if (isCompleted || node == targetNode)
+					{
+						pathBuffer.Add(node);
+					}
+					else
+					{
+						break;
+					}
+				}
+
+				return pathBuffer;
 			}
 
 			var neighbors = new List<Node>();
