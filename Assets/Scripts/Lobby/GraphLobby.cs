@@ -34,6 +34,7 @@ public class GraphLobby : MonoBehaviour
 					break;
 				
 				case LevelType.Enemy:
+					Profile.Instance.CurrentEnemy = startNode.LevelData.EnemyId;
 					SceneManager.LoadScene("MainScene");
 					break;
 				default:

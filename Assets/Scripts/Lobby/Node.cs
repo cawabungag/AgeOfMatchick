@@ -10,6 +10,7 @@ public class Node : MonoBehaviour
    public Node[] Preview;
 
    private SpriteRenderer _sprite;
+   [HideInInspector]
    public LevelData LevelData;
    public bool IsCompleted => Profile.Instance.CompletedLevel.Contains(LevelId);
    private GameObject _obj;

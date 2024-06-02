@@ -19,6 +19,11 @@ public class Pathfinding
 		{
 			Node current = queue.Dequeue();
 
+			if (!current.IsCompleted)
+			{
+				
+			}
+			
 			if (current == targetNode)
 			{
 				return ReconstructPath(cameFrom, current);

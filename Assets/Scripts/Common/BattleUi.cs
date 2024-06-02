@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using AgeOfMatchic.Config;
+using DefaultNamespace;
 using DG.Tweening;
 using TMPro;
 using UnityEngine;
@@ -59,8 +60,8 @@ namespace Common
 		}
 
 		public static BattleUi Instance;
-		public static string[] AllyHeroes = {"Gaheris", "Harun", "Golem"};
-		public static string EnemyHeroes = "Enemy_Hound";
+		public static string[] AllyHeroes = Profile.Instance.SelectedHeroes.ToArray();
+		public static string EnemyHeroes =  Profile.Instance.CurrentEnemy;
 
 		public string[] AllyAbilities
 		{

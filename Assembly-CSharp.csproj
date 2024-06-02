@@ -60,6 +60,7 @@
     <Compile Include="Assets/Scripts/CoreGame/Config/Abilities/AbilityVisualData.cs" />
     <Compile Include="Assets/Scripts/Common/GameModes/GameResetMode.cs" />
     <Compile Include="Assets/VFX/Other/HSFiles/Scripts/HS_EffectSound.cs" />
+    <Compile Include="Assets/Tiny-JSON/Tiny-JSON/JsonAttributes.cs" />
     <Compile Include="Assets/Scripts/Common/Models/IconsSetModel.cs" />
     <Compile Include="Assets/Scripts/Common/Interfaces/IInputSystem.cs" />
     <Compile Include="Assets/Scripts/Match3.Infrastructure/Interfaces/IGameBoardRenderer.cs" />
@@ -94,15 +95,20 @@
     <Compile Include="Assets/Scripts/CoreGame/Config/EventProbabilities.cs" />
     <Compile Include="Assets/Scripts/Common/Interfaces/IUnityItem.cs" />
     <Compile Include="Assets/ThirdParty/Demigiant/DOTween/Modules/DOTweenModuleEPOOutline.cs" />
+    <Compile Include="Assets/Tiny-JSON/Tiny-JSON/JsonParser.cs" />
     <Compile Include="Assets/Scripts/Match3.App/Interfaces/IBoardFillStrategy.cs" />
     <Compile Include="Assets/Scripts/Common/Interfaces/IUnityGameBoardRenderer.cs" />
     <Compile Include="Assets/VFX/Other/HSFiles/Scripts/HS_ParticleCollisionInstance.cs" />
+    <Compile Include="Assets/Scripts/CoreGame/Config/Lobby/SelectHero/SelectableHero.cs" />
+    <Compile Include="Assets/Scripts/CoreGame/Config/Lobby/SelectHero/SelectedHero.cs" />
     <Compile Include="Assets/Scripts/Common/GameModes/GameInitMode.cs" />
     <Compile Include="Assets/Scripts/CoreGame/Config/Abilities/AbilityConfig.cs" />
     <Compile Include="Assets/Scripts/Common/Interfaces/IAppContext.cs" />
     <Compile Include="Assets/Scripts/Common/GridTiles/GridTile.cs" />
     <Compile Include="Assets/Scripts/CoreGame/Config/AomConfig.cs" />
+    <Compile Include="Assets/Scripts/CoreGame/Config/Lobby/SelectHero/HeroIcon.cs" />
     <Compile Include="Assets/VFX/Other/HSFiles/Scripts/HS_ProjectileMover2D.cs" />
+    <Compile Include="Assets/Tiny-JSON/Tiny-JSON/DefaultEncoder.cs" />
     <Compile Include="Assets/Scripts/FillStrategies/Jobs/ItemsFallJob.cs" />
     <Compile Include="Assets/Scripts/Lobby/Pathfinding.cs" />
     <Compile Include="Assets/Scripts/CoreGame/Battle/BattleSession.cs" />
@@ -110,6 +116,7 @@
     <Compile Include="Assets/Scripts/Common/SpecialItemDetectors/IceItemDetector.cs" />
     <Compile Include="Assets/Scripts/Common/Models/TileModel.cs" />
     <Compile Include="Assets/ThirdParty/Demigiant/DOTween/Modules/DOTweenModuleUI.cs" />
+    <Compile Include="Assets/Tiny-JSON/Tiny-JSON/JsonBuilder.cs" />
     <Compile Include="Assets/Scripts/Common/AnimatedItemSwapper.cs" />
     <Compile Include="Assets/Scripts/Common/UnityItemGenerator.cs" />
     <Compile Include="Assets/Scripts/Match3.App/Interfaces/IGameBoardSolver.cs" />
@@ -123,24 +130,27 @@
     <Compile Include="Assets/Scripts/Common/LevelGoals/CollectRowMaxItems.cs" />
     <Compile Include="Assets/Scripts/Common/BattleManager.cs" />
     <Compile Include="Assets/Scripts/FillStrategies/Jobs/MoveJob.cs" />
+    <Compile Include="Assets/Tiny-JSON/Tiny-JSON/JsonMapper.cs" />
     <Compile Include="Assets/Scripts/Common/Extensions/SpriteAtlasExtensions.cs" />
     <Compile Include="Assets/Scripts/Common/Extensions/SpriteRendererExtensions.cs" />
     <Compile Include="Assets/Scripts/FillStrategies/Jobs/ItemsMoveJob.cs" />
-    <Compile Include="Assets/Scripts/Match3.App/GameConfig.cs" />
     <Compile Include="Assets/Scripts/Profile.cs" />
+    <Compile Include="Assets/Scripts/Match3.App/GameConfig.cs" />
+    <Compile Include="Assets/Tiny-JSON/Tiny-JSON/Extensions.cs" />
     <Compile Include="Assets/VFX/Other/HSFiles/Scripts/Hovl_DemoLasers.cs" />
     <Compile Include="Assets/Scripts/CoreGame/Config/Abilities/BoosterAbilityConfig.cs" />
     <Compile Include="Assets/Scripts/Common/Models/PointerEventArgs.cs" />
     <Compile Include="Assets/Scripts/Match3.App/Interfaces/IGameBoard.cs" />
     <Compile Include="Assets/Scripts/Common/CanvasInputSystem.cs" />
     <Compile Include="Assets/Scripts/Common/UnityGameBoardRenderer.cs" />
+    <Compile Include="Assets/Tiny-JSON/Tiny-JSON/DefaultDecoder.cs" />
     <Compile Include="Assets/ThirdParty/Demigiant/DOTween/Modules/DOTweenModuleAudio.cs" />
     <Compile Include="Assets/Scripts/Match3.Infrastructure/Extensions/AppModeExtensions.cs" />
     <Compile Include="Assets/Scripts/Match3.Infrastructure/SequenceDetectors/HorizontalLineDetector.cs" />
     <Compile Include="Assets/ThirdParty/Demigiant/DOTween/Modules/DOTweenModuleSprite.cs" />
     <Compile Include="Assets/Scripts/Common/UiElements/InteractableButton.cs" />
-    <Compile Include="Assets/Scripts/Match3.App/ItemSequence.cs" />
     <Compile Include="Assets/Scripts/CoreGame/Config/Lobby/RewardType.cs" />
+    <Compile Include="Assets/Scripts/Match3.App/ItemSequence.cs" />
     <Compile Include="Assets/Scripts/Lobby/ClearPreferences.cs" />
     <Compile Include="Assets/Scripts/Common/GridTiles/States/StoneState.cs" />
     <Compile Include="Assets/Scripts/Lobby/GraphLobby.cs" />
@@ -156,9 +166,9 @@
     <Compile Include="Assets/VFX/Other/ULTIMA_FX_PACK1/DemoScene/Scripts/DemoButton.cs" />
     <Compile Include="Assets/Scripts/Common/GridTiles/States/NotAvailableState.cs" />
     <Compile Include="Assets/Scripts/FillStrategies/Jobs/ItemsHideJob.cs" />
+    <Compile Include="Assets/Scripts/Input/InputView.cs" />
     <Compile Include="Assets/Scripts/Match3.Infrastructure/ItemGenerator.cs" />
     <Compile Include="Assets/Scripts/Match3.App/Interfaces/ISpecialItemDetector.cs" />
-    <Compile Include="Assets/Scripts/Input/InputView.cs" />
     <Compile Include="Assets/Scripts/CoreGame/GridScaler.cs" />
     <Compile Include="Assets/VFX/Other/HSFiles/Scripts/HS_ProjectileMover.cs" />
     <Compile Include="Assets/Scripts/Common/Interfaces/IGridTile.cs" />
@@ -170,11 +180,13 @@
     <Compile Include="Assets/Scripts/Match3.Infrastructure/Interfaces/IItemGenerator.cs" />
     <Compile Include="Assets/Scripts/FillStrategies/SimpleFillStrategy.cs" />
     <Compile Include="Assets/Scripts/FillStrategies/Models/ItemMoveData.cs" />
+    <Compile Include="Assets/Tiny-JSON/Tiny-JSON/Json.cs" />
     <Compile Include="Assets/Scripts/Match3.App/Internal/GameBoard.cs" />
     <Compile Include="Assets/ResultScreen.cs" />
     <Compile Include="Assets/VFX/Other/ULTIMA_FX_PACK1/DemoScene/Scripts/RotateCamera.cs" />
     <Compile Include="Assets/Scripts/Match3.Core/Interfaces/IStatefulSlot.cs" />
     <Compile Include="Assets/Scripts/Match3.App/Interfaces/IGameBoardDataProvider.cs" />
+    <Compile Include="Assets/Tiny-JSON/Tiny-JSON/AssemblyInfo.cs" />
     <Compile Include="Assets/Scripts/Match3.App/Interfaces/ISolvedSequencesConsumer.cs" />
     <Compile Include="Assets/Scripts/Match3.App/LevelGoal.cs" />
     <Compile Include="Assets/VFX/Other/HSFiles/Scripts/For demo scenes/HS_RaycastInstance.cs" />
@@ -879,59 +891,23 @@
     <Reference Include="Unity.2D.IK.Runtime">
       <HintPath>/Users/cawabunga/Documents/GitHub/AgeOfMatchick/Library/ScriptAssemblies/Unity.2D.IK.Runtime.dll</HintPath>
     </Reference>
+    <Reference Include="PsdPlugin">
+      <HintPath>/Users/cawabunga/Documents/GitHub/AgeOfMatchick/Library/ScriptAssemblies/PsdPlugin.dll</HintPath>
+    </Reference>
     <Reference Include="com.unity.cinemachine.editor">
       <HintPath>/Users/cawabunga/Documents/GitHub/AgeOfMatchick/Library/ScriptAssemblies/com.unity.cinemachine.editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Burst.Editor">
       <HintPath>/Users/cawabunga/Documents/GitHub/AgeOfMatchick/Library/ScriptAssemblies/Unity.Burst.Editor.dll</HintPath>
     </Reference>
-    <Reference Include="Unity.2D.Common.Path.Editor">
-      <HintPath>/Users/cawabunga/Documents/GitHub/AgeOfMatchick/Library/ScriptAssemblies/Unity.2D.Common.Path.Editor.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.2D.PixelPerfect.Editor">
-      <HintPath>/Users/cawabunga/Documents/GitHub/AgeOfMatchick/Library/ScriptAssemblies/Unity.2D.PixelPerfect.Editor.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.Rider.Editor">
-      <HintPath>/Users/cawabunga/Documents/GitHub/AgeOfMatchick/Library/ScriptAssemblies/Unity.Rider.Editor.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.2D.Aseprite.Common">
-      <HintPath>/Users/cawabunga/Documents/GitHub/AgeOfMatchick/Library/ScriptAssemblies/Unity.2D.Aseprite.Common.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.2D.Sprite.Editor">
-      <HintPath>/Users/cawabunga/Documents/GitHub/AgeOfMatchick/Library/ScriptAssemblies/Unity.2D.Sprite.Editor.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.VisualScripting.Flow">
-      <HintPath>/Users/cawabunga/Documents/GitHub/AgeOfMatchick/Library/ScriptAssemblies/Unity.VisualScripting.Flow.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.Mathematics.Editor">
-      <HintPath>/Users/cawabunga/Documents/GitHub/AgeOfMatchick/Library/ScriptAssemblies/Unity.Mathematics.Editor.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.2D.Tilemap.Extras.Editor">
-      <HintPath>/Users/cawabunga/Documents/GitHub/AgeOfMatchick/Library/ScriptAssemblies/Unity.2D.Tilemap.Extras.Editor.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.Collections">
-      <HintPath>/Users/cawabunga/Documents/GitHub/AgeOfMatchick/Library/ScriptAssemblies/Unity.Collections.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.2D.SpriteShape.Runtime">
-      <HintPath>/Users/cawabunga/Documents/GitHub/AgeOfMatchick/Library/ScriptAssemblies/Unity.2D.SpriteShape.Runtime.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.2D.PixelPerfect">
-      <HintPath>/Users/cawabunga/Documents/GitHub/AgeOfMatchick/Library/ScriptAssemblies/Unity.2D.PixelPerfect.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.TextMeshPro">
-      <HintPath>/Users/cawabunga/Documents/GitHub/AgeOfMatchick/Library/ScriptAssemblies/Unity.TextMeshPro.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.2D.Aseprite.Editor">
-      <HintPath>/Users/cawabunga/Documents/GitHub/AgeOfMatchick/Library/ScriptAssemblies/Unity.2D.Aseprite.Editor.dll</HintPath>
-    </Reference>
-    <Reference Include="PsdPlugin">
-      <HintPath>/Users/cawabunga/Documents/GitHub/AgeOfMatchick/Library/ScriptAssemblies/PsdPlugin.dll</HintPath>
+    <Reference Include="Unity.Burst">
+      <HintPath>/Users/cawabunga/Documents/GitHub/AgeOfMatchick/Library/ScriptAssemblies/Unity.Burst.dll</HintPath>
     </Reference>
     <Reference Include="Unity.PlasticSCM.Editor">
       <HintPath>/Users/cawabunga/Documents/GitHub/AgeOfMatchick/Library/ScriptAssemblies/Unity.PlasticSCM.Editor.dll</HintPath>
     </Reference>
-    <Reference Include="Unity.Burst">
-      <HintPath>/Users/cawabunga/Documents/GitHub/AgeOfMatchick/Library/ScriptAssemblies/Unity.Burst.dll</HintPath>
+    <Reference Include="Unity.2D.Common.Path.Editor">
+      <HintPath>/Users/cawabunga/Documents/GitHub/AgeOfMatchick/Library/ScriptAssemblies/Unity.2D.Common.Path.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Timeline.Editor">
       <HintPath>/Users/cawabunga/Documents/GitHub/AgeOfMatchick/Library/ScriptAssemblies/Unity.Timeline.Editor.dll</HintPath>
@@ -957,35 +933,65 @@
     <Reference Include="Unity.VisualScripting.Core.Editor">
       <HintPath>/Users/cawabunga/Documents/GitHub/AgeOfMatchick/Library/ScriptAssemblies/Unity.VisualScripting.Core.Editor.dll</HintPath>
     </Reference>
-    <Reference Include="UnityEngine.UI">
-      <HintPath>/Users/cawabunga/Documents/GitHub/AgeOfMatchick/Library/ScriptAssemblies/UnityEngine.UI.dll</HintPath>
+    <Reference Include="Unity.Rider.Editor">
+      <HintPath>/Users/cawabunga/Documents/GitHub/AgeOfMatchick/Library/ScriptAssemblies/Unity.Rider.Editor.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.2D.PixelPerfect.Editor">
+      <HintPath>/Users/cawabunga/Documents/GitHub/AgeOfMatchick/Library/ScriptAssemblies/Unity.2D.PixelPerfect.Editor.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.2D.Aseprite.Common">
+      <HintPath>/Users/cawabunga/Documents/GitHub/AgeOfMatchick/Library/ScriptAssemblies/Unity.2D.Aseprite.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.2D.Sprite.Editor">
+      <HintPath>/Users/cawabunga/Documents/GitHub/AgeOfMatchick/Library/ScriptAssemblies/Unity.2D.Sprite.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.InternalAPIEditorBridge.005">
       <HintPath>/Users/cawabunga/Documents/GitHub/AgeOfMatchick/Library/ScriptAssemblies/Unity.InternalAPIEditorBridge.005.dll</HintPath>
     </Reference>
-    <Reference Include="Unity.VisualScripting.Flow.Editor">
-      <HintPath>/Users/cawabunga/Documents/GitHub/AgeOfMatchick/Library/ScriptAssemblies/Unity.VisualScripting.Flow.Editor.dll</HintPath>
+    <Reference Include="Unity.VisualScripting.Flow">
+      <HintPath>/Users/cawabunga/Documents/GitHub/AgeOfMatchick/Library/ScriptAssemblies/Unity.VisualScripting.Flow.dll</HintPath>
     </Reference>
     <Reference Include="Unity.InternalAPIEngineBridge.001">
       <HintPath>/Users/cawabunga/Documents/GitHub/AgeOfMatchick/Library/ScriptAssemblies/Unity.InternalAPIEngineBridge.001.dll</HintPath>
     </Reference>
+    <Reference Include="Unity.Mathematics.Editor">
+      <HintPath>/Users/cawabunga/Documents/GitHub/AgeOfMatchick/Library/ScriptAssemblies/Unity.Mathematics.Editor.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.VisualScripting.Flow.Editor">
+      <HintPath>/Users/cawabunga/Documents/GitHub/AgeOfMatchick/Library/ScriptAssemblies/Unity.VisualScripting.Flow.Editor.dll</HintPath>
+    </Reference>
     <Reference Include="Unity.2D.Common.Runtime">
       <HintPath>/Users/cawabunga/Documents/GitHub/AgeOfMatchick/Library/ScriptAssemblies/Unity.2D.Common.Runtime.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.2D.Tilemap.Extras.Editor">
+      <HintPath>/Users/cawabunga/Documents/GitHub/AgeOfMatchick/Library/ScriptAssemblies/Unity.2D.Tilemap.Extras.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Timeline">
       <HintPath>/Users/cawabunga/Documents/GitHub/AgeOfMatchick/Library/ScriptAssemblies/Unity.Timeline.dll</HintPath>
     </Reference>
+    <Reference Include="UnityEngine.UI">
+      <HintPath>/Users/cawabunga/Documents/GitHub/AgeOfMatchick/Library/ScriptAssemblies/UnityEngine.UI.dll</HintPath>
+    </Reference>
     <Reference Include="Unity.VisualScripting.SettingsProvider.Editor">
       <HintPath>/Users/cawabunga/Documents/GitHub/AgeOfMatchick/Library/ScriptAssemblies/Unity.VisualScripting.SettingsProvider.Editor.dll</HintPath>
     </Reference>
-    <Reference Include="Unity.InternalAPIEditorBridge.001">
-      <HintPath>/Users/cawabunga/Documents/GitHub/AgeOfMatchick/Library/ScriptAssemblies/Unity.InternalAPIEditorBridge.001.dll</HintPath>
+    <Reference Include="Unity.Collections">
+      <HintPath>/Users/cawabunga/Documents/GitHub/AgeOfMatchick/Library/ScriptAssemblies/Unity.Collections.dll</HintPath>
     </Reference>
     <Reference Include="Unity.2D.Psdimporter.Editor">
       <HintPath>/Users/cawabunga/Documents/GitHub/AgeOfMatchick/Library/ScriptAssemblies/Unity.2D.Psdimporter.Editor.dll</HintPath>
     </Reference>
+    <Reference Include="Unity.InternalAPIEditorBridge.001">
+      <HintPath>/Users/cawabunga/Documents/GitHub/AgeOfMatchick/Library/ScriptAssemblies/Unity.InternalAPIEditorBridge.001.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.2D.SpriteShape.Runtime">
+      <HintPath>/Users/cawabunga/Documents/GitHub/AgeOfMatchick/Library/ScriptAssemblies/Unity.2D.SpriteShape.Runtime.dll</HintPath>
+    </Reference>
     <Reference Include="Unity.VisualScripting.State.Editor">
       <HintPath>/Users/cawabunga/Documents/GitHub/AgeOfMatchick/Library/ScriptAssemblies/Unity.VisualScripting.State.Editor.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.2D.PixelPerfect">
+      <HintPath>/Users/cawabunga/Documents/GitHub/AgeOfMatchick/Library/ScriptAssemblies/Unity.2D.PixelPerfect.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Mathematics">
       <HintPath>/Users/cawabunga/Documents/GitHub/AgeOfMatchick/Library/ScriptAssemblies/Unity.Mathematics.dll</HintPath>
@@ -993,8 +999,14 @@
     <Reference Include="Unity.2D.Common.Editor">
       <HintPath>/Users/cawabunga/Documents/GitHub/AgeOfMatchick/Library/ScriptAssemblies/Unity.2D.Common.Editor.dll</HintPath>
     </Reference>
+    <Reference Include="Unity.TextMeshPro">
+      <HintPath>/Users/cawabunga/Documents/GitHub/AgeOfMatchick/Library/ScriptAssemblies/Unity.TextMeshPro.dll</HintPath>
+    </Reference>
     <Reference Include="Unity.TextMeshPro.Editor">
       <HintPath>/Users/cawabunga/Documents/GitHub/AgeOfMatchick/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.2D.Aseprite.Editor">
+      <HintPath>/Users/cawabunga/Documents/GitHub/AgeOfMatchick/Library/ScriptAssemblies/Unity.2D.Aseprite.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.VisualScripting.State">
       <HintPath>/Users/cawabunga/Documents/GitHub/AgeOfMatchick/Library/ScriptAssemblies/Unity.VisualScripting.State.dll</HintPath>
@@ -1016,10 +1028,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="UniTask.TextMeshPro.csproj">
-      <Project>{8c0ce9ef-777a-1aed-c655-3dc55a0979be}</Project>
-      <Name>UniTask.TextMeshPro</Name>
-    </ProjectReference>
     <ProjectReference Include="UniTask.Linq.csproj">
       <Project>{f7c2c2af-894c-a48b-98f6-2888d0254dc8}</Project>
       <Name>UniTask.Linq</Name>
@@ -1031,6 +1039,10 @@
     <ProjectReference Include="UniTask.csproj">
       <Project>{be87e1d1-fd5b-9bbc-01b9-905f7fb68116}</Project>
       <Name>UniTask</Name>
+    </ProjectReference>
+    <ProjectReference Include="UniTask.TextMeshPro.csproj">
+      <Project>{8c0ce9ef-777a-1aed-c655-3dc55a0979be}</Project>
+      <Name>UniTask.TextMeshPro</Name>
     </ProjectReference>
     <ProjectReference Include="UniTask.DOTween.csproj">
       <Project>{6a2be48d-619f-5dce-c7ba-1932300be29e}</Project>

@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 namespace DefaultNamespace
@@ -6,17 +7,46 @@ namespace DefaultNamespace
 	public class Profile : MonoBehaviour
 	{
 		public static Profile Instance;
+		
+		[HideInInspector]
 		public List<string> CompletedLevel = new();
-		public List<string> Heroes = new();
-		public List<string> SelectedHeroes = new();
+		
+		[HideInInspector]
+		public List<string> Heroes = new List<string>
+		{
+			"Gaheris", "Harun", "Golem"
+		};
+		
+		[HideInInspector]
+		public List<string> SelectedHeroes = new List<string>
+		{
+			"Gaheris", "Harun", "Golem"
+		};
+
+		[HideInInspector]
 		public int Common = 0;
+		
+		[HideInInspector]
 		public int Premium = 0;
+
+		public string CurrentEnemy;
+		private bool IsInitialized;
 
 		private void Awake()
 		{
 			Instance = this;
 			DontDestroyOnLoad(this);
-			// Load();
+			IsInitialized = PlayerPrefs.GetInt("IsInitialized") == 1;
+
+			if (IsInitialized)
+			{
+				Load();
+			}
+			
+			IsInitialized = true;
+			Save();
+			PlayerPrefs.SetInt("IsInitialized", 1);
+			PlayerPrefs.Save();
 		}
 
 		public void CompleteLevel(string level)
@@ -48,13 +78,10 @@ namespace DefaultNamespace
 			var levels = PlayerPrefs.GetString("levels");
 			var heroes = PlayerPrefs.GetString("heroes");
 			var selected = PlayerPrefs.GetString("selected");
-
-			var levelData = string.IsNullOrEmpty(levels);
-			var heroesData = string.IsNullOrEmpty(heroes);
 			
-			CompletedLevel = levelData ? JsonUtility.FromJson<List<string>>(levels) : new List<string>();
-			Heroes = heroesData ? JsonUtility.FromJson<List<string>>(heroes) : new List<string>();
-			SelectedHeroes = JsonUtility.FromJson<List<string>>(selected) ?? new List<string>();
+			CompletedLevel = Tiny.Json.Decode<List<string>>(levels);
+			Heroes = Tiny.Json.Decode<List<string>>(heroes);
+			SelectedHeroes = Tiny.Json.Decode<List<string>>(selected);
 			
 			Common = PlayerPrefs.GetInt("common", Common);
 			Premium = PlayerPrefs.GetInt("premium", Premium);
@@ -62,9 +89,10 @@ namespace DefaultNamespace
 
 		public void Save()
 		{
-			var levels = JsonUtility.ToJson(CompletedLevel);
-			var heroes = JsonUtility.ToJson(Heroes);
-			var selected = JsonUtility.ToJson(SelectedHeroes);
+			var levels = Tiny.Json.Encode(CompletedLevel);
+			var heroes = Tiny.Json.Encode(Heroes);
+			var selected = Tiny.Json.Encode(SelectedHeroes);
+
 			PlayerPrefs.SetString("levels", levels);
 			PlayerPrefs.SetString("heroes", heroes);
 			PlayerPrefs.SetString("selected", selected);
