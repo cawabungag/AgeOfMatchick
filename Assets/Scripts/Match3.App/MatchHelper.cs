@@ -103,7 +103,10 @@ namespace Match3.App
 					var hasMatchStr = HasMatchStr(board);
 					if (hasMatchStr)
 					{
-						gameBoardOrig[row, col].Item.DebugColor();
+						if (row != 0 && col != 0)
+						{
+							gameBoardOrig[row, col].Item.DebugColor();
+						}
 						return true;
 					}
 
@@ -120,7 +123,10 @@ namespace Match3.App
 					var hasMatchStr = HasMatchStr(board);
 					if (hasMatchStr)
 					{
-						gameBoardOrig[row, col].Item.DebugColor();
+						if (row != 0 && col != 0)
+						{
+							gameBoardOrig[row, col].Item.DebugColor();
+						}
 						return true;
 					}
 

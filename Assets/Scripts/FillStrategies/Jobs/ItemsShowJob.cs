@@ -30,7 +30,7 @@ namespace FillStrategies.Jobs
                 item.SetScale(0);
                 item.Show();
 
-                _ = itemsSequence.Join(item.Transform.DOScale(new Vector3(0.4f, 0.4f, 1), ScaleDuration));
+                _ = itemsSequence.Join(item.Transform.DOScale(new Vector3(0.3f, 0.3f, 1), ScaleDuration));
             }
 
             await itemsSequence.SetEase(Ease.OutBounce).WithCancellation(cancellationToken);
