@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using AgeOfMatchic.Config;
@@ -9,10 +10,16 @@ using Random = UnityEngine.Random;
 public class BattleManager : MonoBehaviour
 {
 	public static BattleManager Instance;
+	private AudioSource AudioSource;
 
 	private void Awake()
 	{
 		Instance = this;
+	}
+
+	private void Start()
+	{
+		AudioSource = GetComponent<AudioSource>();
 	}
 
 	public class AbilityEffect
@@ -42,7 +49,7 @@ public class BattleManager : MonoBehaviour
 
 	private void ApplyAbilityEffect(AbilityEffectConfig origEffect,
 		bool applyToEnemy,
-		Vector3[] vector3S, Sprite ability)
+		Vector3[] vector3S, Sprite ability, AudioClip sfx)
 	{
 		if (origEffect.Chance < 100 && !CheckChance(origEffect.Chance))
 		{
@@ -81,21 +88,21 @@ public class BattleManager : MonoBehaviour
 				if (applyToEnemy)
 				{
 					BattleUi.Instance.ApplyDamageToEnemy(origEffect.Value);
-					Move(ability, vector3S, true);
+					Move(ability, vector3S, true, sfx);
 					break;
 				}
 
 				BattleUi.Instance.ApplyDamageToAlly(origEffect.Value);
-				Move(ability, vector3S, false);
+				Move(ability, vector3S, false, sfx);
 				break;
 
 			case AbilityEffectType.HealHealth:
 				BattleUi.Instance.HealHealth(origEffect.Value);
-				Move(ability, vector3S, false);
+				Move(ability, vector3S, false, sfx);
 				break;
 			case AbilityEffectType.HealShield:
 				BattleUi.Instance.HealShield(origEffect.Value);
-				Move(ability, vector3S, false);
+				Move(ability, vector3S, false, sfx);
 
 				break;
 			case AbilityEffectType.Reflect:
@@ -130,7 +137,7 @@ public class BattleManager : MonoBehaviour
 			.Find(x => x.CharacterId == BattleUi.EnemyHeroes);
 		foreach (var ability in config.Ability.ThreeMatchEffectsIds)
 		{
-			ApplyAbilityEffect(ability, false, null, config.Ability.VisualData.Icon);
+			ApplyAbilityEffect(ability, false, null, config.Ability.VisualData.Icon, config.Ability.AudioClip);
 		}
 	}
 
@@ -157,7 +164,7 @@ public class BattleManager : MonoBehaviour
 		if (effects == null) return;
 		foreach (var effect in effects)
 		{
-			ApplyAbilityEffect(effect, true, vector3S, config.Ability.VisualData.Icon);
+			ApplyAbilityEffect(effect, true, vector3S, config.Ability.VisualData.Icon, config.Ability.AudioClip);
 		}
 	}
 
@@ -170,7 +177,7 @@ public class BattleManager : MonoBehaviour
 
 	public float moveDuration = 2.0f;
 	void Move(Sprite sprite,
-		Vector3[] initialPosition, bool isToEnemy)
+		Vector3[] initialPosition, bool isToEnemy, AudioClip sfx)
 	{
 		if (sprite.name == "Mess_Skill")
 		{
@@ -202,7 +209,11 @@ public class BattleManager : MonoBehaviour
 			spriteObject.transform.DOMove(second, moveDuration).OnComplete(() =>
 			{
 				spriteObject.transform.DOMove(third, moveDuration)
-					.OnComplete(() => Destroy(spriteObject));
+					.OnComplete(() =>
+					{
+						if (sfx != null) AudioSource.PlayOneShot(sfx);
+						Destroy(spriteObject);
+					});
 			});
 		}
 
