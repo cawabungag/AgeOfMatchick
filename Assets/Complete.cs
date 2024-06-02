@@ -7,12 +7,17 @@ public class Complete : MonoBehaviour
 {
     [SerializeField]
     private Button _button;
+
+    public bool IsWin;
     
     void Start()
     {
         _button.onClick.AddListener(() =>
         {
-            Profile.Instance.CompleteLevel(Profile.Instance.CurrectLevel);
+            if (IsWin)
+            {
+                Profile.Instance.CompleteLevel(Profile.Instance.CurrectLevel);
+            }
             SceneManager.LoadScene("Lobby");
         });
     }
