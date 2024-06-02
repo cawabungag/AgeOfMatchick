@@ -19,10 +19,12 @@ public class Pathfinding
 		{
 			Node current = queue.Dequeue();
 
-			if (!current.IsCompleted)
-			{
-				
-			}
+			// var isEmptyNode = string.IsNullOrEmpty(current.LevelId);
+			// var isCompleted = current.IsCompleted;
+			// if (!isCompleted && current != targetNode && !isEmptyNode)
+			// {
+			// 	return ReconstructPath(cameFrom, current);
+			// }
 			
 			if (current == targetNode)
 			{

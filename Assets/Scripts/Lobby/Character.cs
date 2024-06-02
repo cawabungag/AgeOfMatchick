@@ -23,6 +23,8 @@ public class Character : MonoBehaviour
 			var find = GraphLobby.Instance.Nodes.ToList().Find(x => x.LevelId == Profile.Instance.Position);
 			if (find)
 			{
+				StartNode = find;
+				GraphLobby.Instance.StartNode = find;
 				transform.position = find.transform.position;
 			}
 			else
@@ -32,8 +34,13 @@ public class Character : MonoBehaviour
 		}
 	}
 
+	private bool isInProgress = false;
 	private void OnSelectNode(Node obj)
 	{
+		if (isInProgress)
+		{
+			return;
+		}
 		ClearPath();
 
 		var path = _pathfinding.FindPath(StartNode, obj);
@@ -42,10 +49,12 @@ public class Character : MonoBehaviour
 		
 		StartNode = path[^1];
 
+		isInProgress = true;
 		transform.DOPath(enumerable, 1, PathType.CatmullRom)
 			.SetEase(Ease.Linear)
 			.OnComplete(() =>
 			{
+				isInProgress = false;
 				GraphLobby.Instance.EntryLevel(StartNode, path[^2]);
 				ClearPath();
 			});
