@@ -33,13 +33,6 @@ namespace Common
         {
             ContentId = spriteId;
             _spriteRenderer.sprite = sprite;
-            
-            var spriteWidth = sprite.bounds.size.x;
-            var spriteHeight = sprite.bounds.size.y;
-
-            var scaleX = 180 / (spriteWidth * sprite.pixelsPerUnit);
-            var scaleY = 180 / (spriteHeight * sprite.pixelsPerUnit);
-
             transform.localScale = new Vector3(0.4f, 0.4f, 1);
         }
 

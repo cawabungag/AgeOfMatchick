@@ -27,23 +27,9 @@ namespace Common
         private Vector3 _originPosition;
         private TileItemsPool _tileItemsPool;
         
-        public Vector2 baseResolution = new Vector2(1080, 1920); // Базовое разрешение, на которое вы ориентируетесь
-        public Vector3 baseScale = new Vector3(1, 1, 1);
-
         private void Awake()
         {
             _tileItemsPool = new TileItemsPool(_gridTiles, transform);
-            // Получение текущего разрешения экрана
-            float currentWidth = Screen.width;
-            float currentHeight = Screen.height;
-
-            // Вычисление коэффициентов изменения по ширине и высоте
-            float widthRatio = currentWidth / baseResolution.x;
-            float heightRatio = currentHeight / baseResolution.y;
-
-            // Выбор минимального коэффициента для пропорционального изменения масштаба
-            float scaleRatio = Mathf.Max(widthRatio, heightRatio);
-            _tileSize *= scaleRatio;
         }
 
         public IUnityGridSlot[,] GetGameBoardSlots(int level)
