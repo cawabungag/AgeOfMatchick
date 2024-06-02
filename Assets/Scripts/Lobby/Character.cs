@@ -13,6 +13,7 @@ public class Character : MonoBehaviour
 	{
 		GraphLobby.Instance.OnSelectNode += OnSelectNode;
 		StartNode = GraphLobby.Instance.StartNode;
+		transform.position = StartNode.transform.position;
 	}
 
 	private void OnSelectNode(Node obj)

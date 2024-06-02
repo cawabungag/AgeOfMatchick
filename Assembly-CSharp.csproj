@@ -141,6 +141,7 @@
     <Compile Include="Assets/Scripts/Common/UiElements/InteractableButton.cs" />
     <Compile Include="Assets/Scripts/Match3.App/ItemSequence.cs" />
     <Compile Include="Assets/Scripts/CoreGame/Config/Lobby/RewardType.cs" />
+    <Compile Include="Assets/Scripts/Lobby/ClearPreferences.cs" />
     <Compile Include="Assets/Scripts/Common/GridTiles/States/StoneState.cs" />
     <Compile Include="Assets/Scripts/Lobby/GraphLobby.cs" />
     <Compile Include="Assets/Scripts/Common/GameUiCanvas.cs" />

@@ -38,7 +38,7 @@ public class Node : MonoBehaviour
 
    public void SetHighlight(bool isHighlight)
    {
-      _sprite.color = isHighlight ? Color.green : Color.white;
+      _sprite.color = isHighlight ? Color.green : Color.clear;
    }
 
    public void ClearPrefab()
