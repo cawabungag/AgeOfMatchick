@@ -148,6 +148,7 @@
     <Compile Include="Assets/Scripts/Match3.Infrastructure/Extensions/AppModeExtensions.cs" />
     <Compile Include="Assets/Scripts/Match3.Infrastructure/SequenceDetectors/HorizontalLineDetector.cs" />
     <Compile Include="Assets/ThirdParty/Demigiant/DOTween/Modules/DOTweenModuleSprite.cs" />
+    <Compile Include="Assets/Complete.cs" />
     <Compile Include="Assets/Scripts/Common/UiElements/InteractableButton.cs" />
     <Compile Include="Assets/Scripts/CoreGame/Config/Lobby/RewardType.cs" />
     <Compile Include="Assets/Scripts/Match3.App/ItemSequence.cs" />

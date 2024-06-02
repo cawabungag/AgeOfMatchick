@@ -1,8 +1,9 @@
+using DefaultNamespace;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
-public class Reload : MonoBehaviour
+public class Complete : MonoBehaviour
 {
     [SerializeField]
     private Button _button;
@@ -11,7 +12,8 @@ public class Reload : MonoBehaviour
     {
         _button.onClick.AddListener(() =>
         {
-            SceneManager.LoadScene("MainScene");
+            Profile.Instance.CompleteLevel(Profile.Instance.CurrectLevel);
+            SceneManager.LoadScene("Lobby");
         });
     }
 }

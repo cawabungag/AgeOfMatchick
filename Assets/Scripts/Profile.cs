@@ -29,6 +29,7 @@ namespace DefaultNamespace
 		public int Premium = 0;
 
 		public string CurrentEnemy;
+		public string CurrectLevel;
 		private bool IsInitialized;
 
 		private void Awake()
