@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Linq;
+using DefaultNamespace;
 using DG.Tweening;
 using UnityEngine;
 
@@ -13,7 +14,22 @@ public class Character : MonoBehaviour
 	{
 		GraphLobby.Instance.OnSelectNode += OnSelectNode;
 		StartNode = GraphLobby.Instance.StartNode;
-		transform.position = StartNode.transform.position;
+		if (string.IsNullOrEmpty(Profile.Instance.Position))
+		{
+			transform.position = StartNode.transform.position;
+		}
+		else
+		{
+			var find = GraphLobby.Instance.Nodes.ToList().Find(x => x.LevelId == Profile.Instance.Position);
+			if (find)
+			{
+				transform.position = find.transform.position;
+			}
+			else
+			{
+				transform.position = StartNode.transform.position;
+			}
+		}
 	}
 
 	private void OnSelectNode(Node obj)
@@ -30,7 +46,7 @@ public class Character : MonoBehaviour
 			.SetEase(Ease.Linear)
 			.OnComplete(() =>
 			{
-				GraphLobby.Instance.EntryLevel(StartNode);
+				GraphLobby.Instance.EntryLevel(StartNode, path[^2]);
 				ClearPath();
 			});
 	}

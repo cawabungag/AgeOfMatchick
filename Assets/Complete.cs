@@ -16,6 +16,7 @@ public class Complete : MonoBehaviour
         {
             if (IsWin)
             {
+                Profile.Instance.Position = Profile.Instance.CurrectLevel;
                 Profile.Instance.CompleteLevel(Profile.Instance.CurrectLevel);
             }
             SceneManager.LoadScene("Lobby");

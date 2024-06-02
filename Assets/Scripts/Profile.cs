@@ -31,6 +31,7 @@ namespace DefaultNamespace
 		public string CurrentEnemy;
 		public string CurrectLevel;
 		private bool IsInitialized;
+		public string Position { get; set; }
 
 		private void Awake()
 		{
@@ -78,6 +79,7 @@ namespace DefaultNamespace
 			var levels = PlayerPrefs.GetString("levels");
 			var heroes = PlayerPrefs.GetString("heroes");
 			var selected = PlayerPrefs.GetString("selected");
+			Position = PlayerPrefs.GetString("Position");
 			
 			CompletedLevel = Tiny.Json.Decode<List<string>>(levels);
 			Heroes = Tiny.Json.Decode<List<string>>(heroes);
@@ -98,6 +100,8 @@ namespace DefaultNamespace
 			PlayerPrefs.SetString("selected", selected);
 			PlayerPrefs.SetInt("common", Common);
 			PlayerPrefs.SetInt("premium", Premium);
+			PlayerPrefs.SetString("Position", Position);
+
 			PlayerPrefs.Save();
 		}
 	}

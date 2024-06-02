@@ -25,6 +25,7 @@ public class ResultScreen : MonoBehaviour
 
       if (isVictory)
       {
+         Profile.Instance.Position = Profile.Instance.CurrectLevel;
          Profile.Instance.CompleteLevel(Profile.Instance.CurrectLevel);
       }
    }

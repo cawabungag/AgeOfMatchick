@@ -9,6 +9,7 @@ public class GraphLobby : MonoBehaviour
 	public Action<Node> OnSelectNode;
 	public ConfigObject Config;
 	public Node StartNode;
+	public Node[] Nodes;
 
 	public static GraphLobby Instance;
 
@@ -17,7 +18,7 @@ public class GraphLobby : MonoBehaviour
 		Instance = this;
 	}
 
-	public void EntryLevel(Node startNode)
+	public void EntryLevel(Node startNode, Node node)
 	{
 		if (startNode.IsCompleted)
 		{
@@ -36,6 +37,7 @@ public class GraphLobby : MonoBehaviour
 				case LevelType.Enemy:
 					Profile.Instance.CurrentEnemy = startNode.LevelData.EnemyId;
 					Profile.Instance.CurrectLevel = startNode.LevelData.Id;
+					Profile.Instance.Position = node.LevelData.Id;
 					SceneManager.LoadScene("MainScene");
 					break;
 				default:
