@@ -361,7 +361,7 @@ namespace Common
 				textComponent.text = $"+{value}";
 				if (healShield)
 				{
-					textComponent.color = Color.green;
+					textComponent.color = Color.blue;
 				}
 				else
 				{
