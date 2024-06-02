@@ -73,7 +73,6 @@ namespace Common
 				var buffer = new List<string>();
 				foreach (var allyHero in AllyHeroes)
 				{
-					Debug.LogError($"_config : {_config == null}");
 					var characterConfig = _config.Config.Characters.ToList().Find(x => x.CharacterId == allyHero);
 					buffer.Add(characterConfig.Ability.VisualData.Icon.name);
 				}

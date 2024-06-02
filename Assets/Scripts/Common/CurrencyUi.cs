@@ -10,8 +10,8 @@ namespace Common
 		public float moveDuration = 2.0f;
 		public float destroyDelay = 1.0f;
 			
-		private int _gold;
-		private int _silver;
+		private int _gold = Profile.Instance.Premium;
+		private int _silver = Profile.Instance.Common;
 		
 		[SerializeField]
 		private TextMeshProUGUI _goldCount;
