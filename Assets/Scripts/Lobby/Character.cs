@@ -50,7 +50,7 @@ public class Character : MonoBehaviour
 		StartNode = path[^1];
 
 		isInProgress = true;
-		transform.DOPath(enumerable, 1, PathType.CatmullRom)
+		transform.DOPath(enumerable, 0.2f * path.Count, PathType.CatmullRom)
 			.SetEase(Ease.Linear)
 			.OnComplete(() =>
 			{
