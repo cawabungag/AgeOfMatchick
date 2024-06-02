@@ -1,3 +1,4 @@
+using DefaultNamespace;
 using DG.Tweening;
 using TMPro;
 using UnityEngine;
@@ -34,7 +35,8 @@ namespace Common
 		private Camera _uiCamera;
 		public Material alwaysOnTopMaterial;
 
-		
+		[SerializeField]
+		private AudioSource _audioSource;
 		
 		public static CurrencyUi Instance;
 
@@ -58,6 +60,7 @@ namespace Common
 				var seqloc = spawnedObject.transform.DOMove(worldTargetPosition, moveDuration)
 					.OnComplete(() =>
 					{
+						_audioSource.PlayOneShot(BattleUi.Instance.Config.Config.GoldClip);
 						Destroy(spawnedObject, destroyDelay);
 					});
 				seq.Append(seqloc);
@@ -80,6 +83,7 @@ namespace Common
 				var seqloc = spawnedObject.transform.DOMove(worldTargetPosition, moveDuration)
 					.OnComplete(() =>
 					{
+						_audioSource.PlayOneShot(BattleUi.Instance.Config.Config.GoldClip);
 						Destroy(spawnedObject, destroyDelay);
 					});
 				seq.Append(seqloc);
@@ -92,6 +96,8 @@ namespace Common
 		{
 			_goldCount.text = _gold.ToString();
 			_silverCount.text = _silver.ToString();
+			Profile.Instance.SetPremium(_gold);
+			Profile.Instance.SetCommon(_silver);
 		}
 	}
 }
