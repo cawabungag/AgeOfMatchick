@@ -47,6 +47,9 @@ namespace Common
 		[SerializeField]
 		private ResultScreen _resultScreen;
 		
+		[SerializeField]
+		private SkillDescription _skillDescription;
+		
 		public ConfigObject Config
 		{
 			get
@@ -183,6 +186,7 @@ namespace Common
 		{
 			var allySprites = new List<Sprite>();
 			var abilities = new List<Sprite>();
+			var desk = new List<string>();
 			var boosters = new List<Sprite>();
 
 			foreach (var allyHero in allyHeroes)
@@ -193,6 +197,7 @@ namespace Common
 				MaxAllyShield += heroConf.ChatacterStatsConfig.Shield;
 				allySprites.Add(heroConf.VisualData.Sprite);
 				abilities.Add(heroConf.Ability.VisualData.Icon);
+				desk.Add(heroConf.Ability.VisualData.Description);
 				boosters.Add(heroConf.BoosterAbility.VisualData.Icon);
 			}
 
@@ -205,8 +210,8 @@ namespace Common
 			MaxEnemyShield = 0;
 
 			UpdateAllyAvatars(allySprites);
-			UpdateEnemyAvatar(enemyConf.VisualData.Sprite);
-			UpdateAllyAbilityIcons(abilities);
+			UpdateEnemyAvatar(enemyConf.VisualData.Sprite, enemyConf.Ability.VisualData.Description);
+			UpdateAllyAbilityIcons(abilities, desk);
 			UpdateAllyBoosterIcons(boosters);
 			
 			UpdateEnemyHealthUI();
@@ -233,25 +238,32 @@ namespace Common
 			}
 		}
 
-		private void UpdateEnemyAvatar(Sprite enemyHeroID)
+		private void UpdateEnemyAvatar(Sprite enemyHeroID, string desk)
 		{
 			EnemyAvatarImage.sprite = enemyHeroID;
 			EnemyAvatarImage.enabled = true;
+			var button = EnemyAvatarImage.GetComponent<Button>();
+			button.onClick.RemoveAllListeners();
+			button.onClick.AddListener(() => _skillDescription.Setup(enemyHeroID, desk));
 		}
 
-		private void UpdateAllyAbilityIcons(List<Sprite> allyAbilityIcons)
+		private void UpdateAllyAbilityIcons(List<Sprite> allyAbilityIcons, List<string> desk)
 		{
 			for (int i = 0; i < AllyAbilityIcons.Length; i++)
 			{
+				var allyAbilityIcon = AllyAbilityIcons[i];
 				if (i < allyAbilityIcons.Count)
 				{
-					// Assuming you have a method to load the sprite based on the ability ID
-					AllyAbilityIcons[i].sprite = allyAbilityIcons[i];
-					AllyAbilityIcons[i].enabled = true;
+					allyAbilityIcon.sprite = allyAbilityIcons[i];
+					allyAbilityIcon.enabled = true;
+					var button = allyAbilityIcon.GetComponent<Button>();
+					button.onClick.RemoveAllListeners();
+					var i1 = i;
+					button.onClick.AddListener(() => _skillDescription.Setup(allyAbilityIcons[i1], desk[i1]));
 				}
 				else
 				{
-					AllyAbilityIcons[i].enabled = false;
+					allyAbilityIcon.enabled = false;
 				}
 			}
 		}
