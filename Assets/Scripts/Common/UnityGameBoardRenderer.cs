@@ -16,7 +16,7 @@ namespace Common
         [SerializeField] private int _columnCount = 9;
 
         [Space]
-        [SerializeField] private float _tileSize = 0.6f;
+        [SerializeField] private float _tileSize = 0.4f;
 
         [Space]
         [SerializeField] private TileModel[] _gridTiles;
