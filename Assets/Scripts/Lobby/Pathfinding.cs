@@ -1,5 +1,4 @@
 using System.Collections.Generic;
-using Unity.VisualScripting;
 
 public class Pathfinding
 {
@@ -40,6 +39,7 @@ public class Pathfinding
 
 				if (pathBuffer.Count == 0)
 				{
+					pathBuffer.Add(startNode);
 					pathBuffer.Add(targetNode);
 				}
 				
