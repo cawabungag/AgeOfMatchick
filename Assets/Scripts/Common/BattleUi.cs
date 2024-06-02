@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using AgeOfMatchic.Config;
@@ -63,8 +64,8 @@ namespace Common
 		}
 
 		public static BattleUi Instance;
-		public static string[] AllyHeroes = Profile.Instance.SelectedHeroes.ToArray();
-		public static string EnemyHeroes =  Profile.Instance.CurrentEnemy;
+		public static string[] AllyHeroes => Profile.Instance.SelectedHeroes.ToArray();
+		public static string EnemyHeroes => Profile.Instance.CurrentEnemy;
 
 		public string[] AllyAbilities
 		{
@@ -83,8 +84,15 @@ namespace Common
 		
 		private void Awake()
 		{
+			if (Instance)
+			{
+				return;
+			}
+			
 			Instance = this;
+			Setup(AllyHeroes, EnemyHeroes);
 		}
+
 
 		public int AllyHealth
 		{
@@ -174,11 +182,6 @@ namespace Common
 			{
 				EnemyShieldImage.fillAmount = (float) enemyShield / MaxEnemyShield;
 			}
-		}
-
-		private void Start()
-		{
-			Setup(AllyHeroes, EnemyHeroes);
 		}
 
 		public void Setup(string[] allyHeroes, string enemy)

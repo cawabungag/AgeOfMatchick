@@ -38,6 +38,7 @@ public class GraphLobby : MonoBehaviour
 					Profile.Instance.CurrentEnemy = startNode.LevelData.EnemyId;
 					Profile.Instance.CurrectLevel = startNode.LevelData.Id;
 					Profile.Instance.Position = node.LevelData.Id;
+					Profile.Instance.Save();
 					SceneManager.LoadScene("MainScene");
 					break;
 				default:
