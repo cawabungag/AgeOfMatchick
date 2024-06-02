@@ -1,5 +1,4 @@
 using System.Collections.Generic;
-using System.Linq;
 using UnityEngine;
 
 namespace DefaultNamespace
@@ -89,9 +88,9 @@ namespace DefaultNamespace
 
 		public void Save()
 		{
-			var levels = Tiny.Json.Encode(CompletedLevel);
-			var heroes = Tiny.Json.Encode(Heroes);
-			var selected = Tiny.Json.Encode(SelectedHeroes);
+			var levels = Tiny.Json.Encode(CompletedLevel.ToArray());
+			var heroes = Tiny.Json.Encode(Heroes.ToArray());
+			var selected = Tiny.Json.Encode(SelectedHeroes.ToArray());
 
 			PlayerPrefs.SetString("levels", levels);
 			PlayerPrefs.SetString("heroes", heroes);
