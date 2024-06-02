@@ -18,7 +18,6 @@ namespace Common
             {
                 RegisterSequenceScore(sequence, auto);
                 auto = false;
-                Debug.LogError("Solve Data:" + GetSequenceDescription(sequence) + $"IsAutomaticMatch {solvedData.IsAutomaticMatch}");
             }
         }
 

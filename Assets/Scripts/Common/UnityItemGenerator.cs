@@ -54,8 +54,6 @@ namespace Common
                 var next = _random.Next(0, battleUi.AllyAbilities.Length);
                 var battleUiAllyAbility = battleUi.AllyAbilities[next];
                 item.SetSprite(strings.FindIndex(x => x.Equals(battleUiAllyAbility)), _sprites.ToList().Find(x => x.name == $"{battleUiAllyAbility}(Clone)"));
-                Debug.LogError($"+++++ {battleUiAllyAbility}");
-                Debug.LogError($"+++++ {item.SpriteRenderer.sprite.name}");
                 return item;
             }
             if (index > eventProbabilities.AbilitiesProbability && index < 100 - eventProbabilities.GoldProbability)

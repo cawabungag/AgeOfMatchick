@@ -42,8 +42,6 @@ namespace FillStrategies
                 iterations++;
             }
             
-            Debug.LogError($"+++ iterations: {iterations}");
-            
             return new[] { new ItemsShowJob(itemsToShow) };
         }
 
