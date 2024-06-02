@@ -1,3 +1,4 @@
+#if UNITY_EDITOR
 using UnityEditor;
 using UnityEngine;
 
@@ -11,3 +12,4 @@ public static class ClearPreferences
 		Debug.Log("All Player Preferences have been cleared.");
 	}
 }
+#endif
