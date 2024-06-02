@@ -8,5 +8,7 @@ namespace AgeOfMatchic.Config
 	{
 		[SerializeField]
 		public CharacterConfig[] Characters;
+		public AudioClip SilverClip;
+		public AudioClip GoldClip;
 	}
 }

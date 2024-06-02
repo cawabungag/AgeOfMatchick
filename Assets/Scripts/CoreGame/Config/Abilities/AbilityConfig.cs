@@ -1,4 +1,5 @@
 using System;
+using UnityEngine;
 
 namespace AgeOfMatchic.Config
 {
@@ -9,5 +10,6 @@ namespace AgeOfMatchic.Config
 		public AbilityEffectConfig[] ThreeMatchEffectsIds;
 		public AbilityEffectConfig[] FourMatchEffectsIds;
 		public AbilityEffectConfig[] FiveMatchEffectsIds;
+		public AudioClip AudioClip;
 	}
 }

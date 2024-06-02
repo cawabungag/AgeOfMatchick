@@ -8,6 +8,7 @@ namespace DefaultNamespace
 		public static Profile Instance;
 		public List<string> CompletedLevel = new();
 		public List<string> Heroes = new();
+		public List<string> SelectedHeroes = new();
 		public int Common = 0;
 		public int Premium = 0;
 
@@ -15,7 +16,7 @@ namespace DefaultNamespace
 		{
 			Instance = this;
 			DontDestroyOnLoad(this);
-			Load();
+			// Load();
 		}
 
 		public void CompleteLevel(string level)
@@ -46,8 +47,15 @@ namespace DefaultNamespace
 		{
 			var levels = PlayerPrefs.GetString("levels");
 			var heroes = PlayerPrefs.GetString("heroes");
-			CompletedLevel = JsonUtility.FromJson<List<string>>(levels) ?? new List<string>();
-			Heroes = JsonUtility.FromJson<List<string>>(heroes) ?? new List<string>();
+			var selected = PlayerPrefs.GetString("selected");
+
+			var levelData = string.IsNullOrEmpty(levels);
+			var heroesData = string.IsNullOrEmpty(heroes);
+			
+			CompletedLevel = levelData ? JsonUtility.FromJson<List<string>>(levels) : new List<string>();
+			Heroes = heroesData ? JsonUtility.FromJson<List<string>>(heroes) : new List<string>();
+			SelectedHeroes = JsonUtility.FromJson<List<string>>(selected) ?? new List<string>();
+			
 			Common = PlayerPrefs.GetInt("common", Common);
 			Premium = PlayerPrefs.GetInt("premium", Premium);
 		}
@@ -56,8 +64,10 @@ namespace DefaultNamespace
 		{
 			var levels = JsonUtility.ToJson(CompletedLevel);
 			var heroes = JsonUtility.ToJson(Heroes);
+			var selected = JsonUtility.ToJson(SelectedHeroes);
 			PlayerPrefs.SetString("levels", levels);
 			PlayerPrefs.SetString("heroes", heroes);
+			PlayerPrefs.SetString("selected", selected);
 			PlayerPrefs.SetInt("common", Common);
 			PlayerPrefs.SetInt("premium", Premium);
 			PlayerPrefs.Save();
