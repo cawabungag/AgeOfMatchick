@@ -95,6 +95,7 @@ namespace Match3.App
 			{
 				NotifySequencesSolved(solvedData);
 				await ExecuteJobsAsync(fillStrategy.GetSolveJobs(GameBoard, solvedData), cancellationToken);
+				MatchHelper<TGridSlot>.HasPotentialMatchSrt(GameBoard);
 			}
 			else
 			{
